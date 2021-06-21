@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardRaces"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#0288d1"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/fondoraces"
+                 />
+
+            <TextView
+                android:id="@+id/CVrace_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/staatlichesreg"
+                android:textSize="26dp"
+                android:layout_marginStart="10dp"
+                android:textColor="#64dd17"
+                android:text="Gran Fondo Valencia" />
+
+            <TextView
+                android:id="@+id/CVrace_dist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/staatlichesreg"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:layout_marginStart="10dp"
+                android:text="Distancia: 180 km" />
+
+            <TextView
+                android:id="@+id/CVdesnivel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/staatlichesreg"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp"
+                android:text="Desnivel positivo: 2500 m+" />
+
+            <TextView
+                android:id="@+id/CVdate_race"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/staatlichesreg"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp"
+                android:text="Fecha: 18/06/2021" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

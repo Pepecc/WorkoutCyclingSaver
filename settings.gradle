@@ -1,0 +1,3 @@
+include ':mysql-connector-java-8.0.24'
+include ':app'
+rootProject.name = "ProyectoDAM"

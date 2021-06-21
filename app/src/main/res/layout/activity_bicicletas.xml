@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondoapp"
+    tools:context=".bicicletas">
+
+    <TextView
+        android:id="@+id/TVmis_bicis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/bangers_font"
+        android:text="Mis Bicicletas"
+        android:textAlignment="center"
+        android:textColor="@color/yellow"
+        android:textSize="30sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMisBicis"
+        android:layout_width="match_parent"
+        android:layout_height="554dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="150dp" />
+
+
+    <Button
+        android:id="@+id/BTaddBikeHist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="650dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/staatlichesreg"
+        android:background="@drawable/button_rounded"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="Añadir bicicleta" />
+
+</FrameLayout>

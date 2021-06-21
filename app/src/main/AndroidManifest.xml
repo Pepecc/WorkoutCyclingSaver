@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.proyectodam">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".UserApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".HistorialTimeSplit"></activity>
+        <activity android:name=".visor_carreras" />
+        <activity android:name=".visor_bicicletas" />
+        <activity android:name=".visor_train_outdoor" />
+        <activity android:name=".visorTrainIndoor" />
+        <activity android:name=".carreras" />
+        <activity android:name=".anadir_carrera" />
+        <activity android:name=".anadirBici" />
+        <activity android:name=".bicicletas" />
+        <activity android:name=".MiEspacio" />
+        <activity android:name=".Historial" />
+        <activity android:name=".Estadisticas" />
+        <activity android:name=".TimeSplit" />
+        <activity android:name=".ChooseTraining" />
+        <activity android:name=".GuardarDatosOutdoor" />
+        <activity android:name=".GuardarDatosIndoor" />
+        <activity android:name=".MenuInicial" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".ActivityInicial"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

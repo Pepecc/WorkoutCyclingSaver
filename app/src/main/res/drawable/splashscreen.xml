@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/cardview_dark_background"/>
+    <gradient
+        android:startColor="#000000"
+        android:endColor="#424242"
+        android:angle="45"
+        />
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/logo_app"/>
+
+
+        <stroke
+            android:width="0.5dip"
+            android:color="#999999"/>
+    </item>
+</layer-list>

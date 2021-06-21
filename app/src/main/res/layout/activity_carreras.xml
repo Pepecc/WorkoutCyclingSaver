@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondoapp"
+    tools:context=".carreras">
+    <TextView
+        android:id="@+id/TVmis_races"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/bangers_font"
+        android:text="Mis Carreras"
+        android:textAlignment="center"
+        android:textColor="@color/yellow"
+        android:textSize="30sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMisRaces"
+        android:layout_width="match_parent"
+        android:layout_height="564dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="150dp" />
+
+    <Button
+        android:id="@+id/BTadd_race_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="650dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/staatlichesreg"
+        android:background="@drawable/button_rounded"
+        android:text="Añadir carrera" />
+
+</FrameLayout>

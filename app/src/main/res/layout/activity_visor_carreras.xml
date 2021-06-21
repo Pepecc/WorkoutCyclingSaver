@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondoapp"
+    tools:context=".visor_carreras">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="#0288d1"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp">
+
+        <ImageView
+            android:id="@+id/ImgPerfilCarrera"
+            android:layout_marginStart="0sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:src="@drawable/fondoraces" />
+
+        <TextView
+            android:id="@+id/TVtitleCarreras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:text="Gran Fondo Valencia"
+            android:fontFamily="@font/bangers_font"
+            android:textColor="#64dd17"
+            android:textSize="26sp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TVfechaCarreraTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="250dp"
+            android:text="Fecha"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="#212121"
+            android:layout_marginStart="30sp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/TVfechaCarrera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="253dp"
+            android:layout_marginStart="190dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="25/04/2021" />
+
+        <View
+            android:id="@+id/barra_separadora"
+            android:layout_width="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="290dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/TVTitleDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="310dp"
+            android:layout_marginStart="30sp"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="#212121"
+            android:textSize="20sp"
+            android:text="Distancia" />
+
+        <TextView
+            android:id="@+id/TVdistanceRace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="313dp"
+            android:layout_marginStart="200dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="160 km" />
+
+        <View
+            android:id="@+id/barra_separadora2"
+            android:layout_width="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="350dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/TVdesnivAcum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="370dp"
+            android:layout_marginStart="30sp"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="#212121"
+            android:textSize="20sp"
+            android:text="desnivel" />
+
+        <TextView
+            android:id="@+id/TVdesniv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="373dp"
+            android:layout_marginStart="200dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="2500 M" />
+
+        <View
+            android:id="@+id/barra_separadora3"
+            android:layout_width="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="415dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/TVdireccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="430dp"
+            android:layout_marginStart="30sp"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="#212121"
+            android:textSize="20sp"
+            android:text="Localizacion" />
+
+        <TextView
+            android:id="@+id/TVlocaliz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="433dp"
+            android:layout_marginStart="190dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="Ibi, Alicante" />
+
+        <Button
+            android:id="@+id/BTborrarCarrera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="530dp"
+            android:layout_marginEnd="40dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/button_rounded"
+            android:fontFamily="@font/staatlichesreg"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="Eliminar carrera"
+            android:textColor="#64dd17"
+            android:textSize="20sp" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

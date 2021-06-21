@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fondoapp"
+        android:padding="10dp"
+        tools:context=".GuardarDatosOutdoor">
+
+
+        <View
+            android:id="@+id/barra_cardio"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.387"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ETdist_od" />
+
+        <TextView
+            android:id="@+id/TVpulsomed_od"
+            android:layout_width="122dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:text="Pulso medio:"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVpuls_title" />
+
+        <TextView
+            android:id="@+id/TVelevac_od"
+            android:layout_width="155dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:text="Pendiente media:"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVelevac_title" />
+
+        <TextView
+            android:id="@+id/TVdist_subida_od2"
+            android:layout_width="179dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Desnivel acumulado:"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ETpend_max_od" />
+
+        <TextView
+            android:id="@+id/TVpendmax_od"
+            android:layout_width="166dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="20dp"
+            android:text="Pendiente máxima:"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVelevac_title" />
+
+        <TextView
+            android:id="@+id/TVelevac_title"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginTop="30dp"
+            android:text="   VALORES DE ELEVACIÓN"
+            android:drawableLeft="@drawable/ic_elevac"
+            android:textAlignment="center"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="35dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/contrailoneregular"
+            android:textSize="20sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.437"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barra_climb" />
+
+        <TextView
+            android:id="@+id/TVpuls_title"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="25dp"
+            android:text="   VALORES DE FRECUENCIA CARDíACA"
+            android:drawableLeft="@drawable/ic_pulser"
+            android:fontFamily="@font/contrailoneregular"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barra_cardio" />
+
+        <TextView
+            android:id="@+id/TVspeed_title"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:drawableLeft="@drawable/ic_bandera"
+            android:fontFamily="@font/contrailoneregular"
+            android:text="   VALORES DE VELOCIDAD"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.391"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/barra_climb2" />
+
+        <TextView
+            android:id="@+id/TVvmed_od2"
+            android:layout_width="166dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="20dp"
+            android:text="Velocidad máxima:"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVspeed_title" />
+
+        <EditText
+            android:id="@+id/ETvmax_od"
+            android:layout_width="300px"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:hint="Ej: 80 km/h"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVvmed_od2" />
+
+        <EditText
+            android:id="@+id/ETvmedia_od"
+            android:layout_width="300px"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:hint="Ej: 25 km/h"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVvmed_od" />
+
+        <TextView
+            android:id="@+id/TVvmed_od"
+            android:layout_width="166dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:text="Velocidad media:"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVspeed_title" />
+
+        <TextView
+            android:id="@+id/TVcals_od2"
+            android:layout_width="179dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:text="Calorías consumidas:"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ETpuslomed_od" />
+
+        <EditText
+            android:id="@+id/ETpuslomed_od"
+            android:layout_width="250px"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/white"
+            android:hint="Ej: 140"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVpulsomed_od" />
+
+        <EditText
+            android:id="@+id/ETpend_media_od"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="Ej: 5 %"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVelevac_od" />
+
+        <EditText
+            android:id="@+id/ETpend_max_od"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="Ej: 15 %"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVpendmax_od" />
+
+        <EditText
+            android:id="@+id/ETdesnivel_od"
+            android:layout_width="300px"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="Ej: 1500 m"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVdist_subida_od2" />
+
+        <EditText
+            android:id="@+id/ETcalorias_od"
+            android:layout_width="250px"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:hint="Ej: 2500"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVcals_od2" />
+
+        <TextView
+            android:id="@+id/TVpulsomax_od"
+            android:layout_width="128dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="230dp"
+            android:layout_marginTop="20dp"
+            android:text="Pulso máximo:"
+            android:fontFamily="@font/staatlichesreg"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVpuls_title" />
+
+        <EditText
+            android:id="@+id/ETpuslomax_od"
+            android:layout_width="250px"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="230dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Ej: 180"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVpulsomax_od" />
+
+        <TextView
+            android:id="@+id/TVtitulo_outd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10px"
+            android:fontFamily="@font/bangers_font"
+            android:text="Guardar sesión outdoor"
+            android:textAlignment="center"
+            android:textColor="@color/yellow"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.41"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/ETfecha_od"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="50px"
+            android:layout_marginEnd="10sp"
+            android:drawableLeft="@drawable/ic_calendar"
+            android:ems="10"
+            android:textSize="20sp"
+            android:inputType="textPersonName"
+            android:fontFamily="@font/staatlichesreg"
+            android:hint="  Selecciona fecha"
+            android:clickable="false"
+            android:focusable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.088"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVtitulo_outd" />
+
+        <TextView
+            android:id="@+id/TVtiempo_total_od"
+            android:layout_width="158dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:drawableLeft="@drawable/ic_tiempots"
+            android:fontFamily="@font/staatlichesreg"
+            android:text="  Tiempo total:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ETfecha_od" />
+
+        <EditText
+            android:id="@+id/ETtotaltime_od"
+            android:layout_width="250px"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="180 min"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVtiempo_total_od" />
+
+        <EditText
+            android:id="@+id/ETdist_od"
+            android:layout_width="250px"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="Ej: 120 km"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVdist_od" />
+
+        <TextView
+            android:id="@+id/TVdist_od"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="50dp"
+            android:drawableLeft="@drawable/ic_distancia"
+            android:fontFamily="@font/staatlichesreg"
+            android:text="  Distancia recorrida:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.728"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ETfecha_od" />
+
+        <View
+            android:id="@+id/barra_climb2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ETcalorias_od" />
+
+        <View
+            android:id="@+id/barra_climb"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.387"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ETvmedia_od" />
+
+        <View
+            android:id="@+id/barra_last"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@+id/BTtimesplit"
+            tools:layout_editor_absoluteX="10dp" />
+
+
+        <Button
+            android:id="@+id/BTtimesplit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_rounded_empty"
+            android:fontFamily="@font/staatlichesreg"
+            android:foreground="?selectableItemBackground"
+            android:text="Registros de time split"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ETnotasODtrainNew" />
+
+        <Button
+            android:id="@+id/BTsaveOutdoorTrain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/button_rounded"
+            android:fontFamily="@font/staatlichesreg"
+            android:foreground="?selectableItemBackground"
+            android:text="Guardar datos"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barra_last" />
+
+        <TextView
+            android:id="@+id/TVnotasTitleODtrain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/staatlichesreg"
+            android:text="Notas:"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ETdesnivel_od"
+            tools:layout_editor_absoluteY="1125dp" />
+
+        <EditText
+            android:id="@+id/ETnotasODtrainNew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Escribe tus notas aquí"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVnotasTitleODtrain" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
