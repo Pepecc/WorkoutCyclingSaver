@@ -140,7 +140,7 @@ class Estadisticas : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Error al cargar los datos", Toast.LENGTH_SHORT).show()
                 }.addOnCompleteListener{
 
-                    calcularPrimerChart(contIndoor)
+                    calcularPrimerChart()
                     calcularSegundoChart()
                     calcularTercerChart()
                     calcularCuartoChart()
@@ -149,18 +149,12 @@ class Estadisticas : AppCompatActivity() {
     }
 
     //CALCULAR EL PORCENTAJE DE CADA ENTRENAMIENTO Y PASARSELO A LA FUNCIÓN QUE LO PINTA
-    fun calcularPrimerChart(puto: Int){
-        println("Indoor glob " + contIndoor)
-        println("Outdor glob " + contOutdoor)
-        println("Total indor " + totalCalsIndoor)
+    fun calcularPrimerChart(){
         totalTrain = contIndoor+contOutdoor
-        println("TOTALGLOBAL " + totalTrain)
         var contIndFloat : Float = contIndoor.toFloat()
         var contOutFloat : Float = contOutdoor.toFloat()
            var calculoID : Float = (contIndFloat/totalTrain)*100
            var calculoOD : Float = (contOutFloat/totalTrain)*100
-        println("MEdiaidn " + calculoID)
-        println("Mediaot " + calculoOD)
 
         //PINTA LOS DATOS DE LA TARTA
         rellenarDatosChart(calculoID, calculoOD)

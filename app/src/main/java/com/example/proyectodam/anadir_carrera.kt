@@ -77,12 +77,12 @@ class anadir_carrera : AppCompatActivity() {
     }
 
     private fun showDatePickerDialog(){
-        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year)}
+        val datePicker = DatePickerRace { day, month, year -> onDateSelected(day, month, year)}
         datePicker.show(supportFragmentManager, "datePicker")
     }
 
     fun onDateSelected(day:Int, month:Int, year:Int) {
-        binding.ETdateRace.setText("$day/$month/$year")
+        binding.ETdateRace.setText("$day/${month+1}/$year")
     }
 
 
@@ -153,10 +153,6 @@ class anadir_carrera : AppCompatActivity() {
     }
 
 
-    /*   val bitmap = BitmapFactory.decodeFile(imgFoto.toString())
-       val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 300, 225, true)
-       val uri = resizedBitmap.toString().toUri()
-   */
 
     private fun openCamera() {
        Toast.makeText(this, "Abriendo cámara", Toast.LENGTH_SHORT).show()
@@ -208,8 +204,8 @@ class anadir_carrera : AppCompatActivity() {
     }
 
     fun addRace(){
-        if(binding.ETtitleRace.text.isNullOrBlank() && binding.ETdistanceRace.text.isNullOrBlank() && binding.ETdesnivRace.text.isNullOrBlank() &&
-                binding.ETdateRace.text.isNullOrBlank() && binding.ETlocalizrace.text.isNullOrBlank()){
+        if(binding.ETtitleRace.text.isNullOrBlank() || binding.ETdistanceRace.text.isNullOrBlank() || binding.ETdesnivRace.text.isNullOrBlank() ||
+                binding.ETdateRace.text.isNullOrBlank() || binding.ETlocalizrace.text.isNullOrBlank()){
             showAlert("Atención" , "No pueden haber campos vacios")
         }else{
             val datosRace = hashMapOf(

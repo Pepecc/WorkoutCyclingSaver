@@ -88,7 +88,7 @@ class GuardarDatosOutdoor : AppCompatActivity() {
     }
 
     fun onDateSelected(day: Int, month: Int, year: Int){
-        binding.ETfechaOd.setText("$day / $month / $year")
+        binding.ETfechaOd.setText("$day/${month+1}/$year")
     }
 
     fun showAlert(titulo: String, mensaje: String){
@@ -110,7 +110,6 @@ class GuardarDatosOutdoor : AppCompatActivity() {
         binding.ETpuslomedOd.setText("")
         binding.ETcaloriasOd.setText("")
         binding.ETvmediaOd.setText("")
-        //CAMPOS OPCIONALES:
         binding.ETvmaxOd.setText("")
         binding.ETpendMediaOd.setText("")
         binding.ETpendMaxOd.setText("")
@@ -128,16 +127,15 @@ class GuardarDatosOutdoor : AppCompatActivity() {
         var notas: String = ""
         var idDoc: String = ""
         val ind = indice
-        if(binding.ETtotaltimeOd.text.isNullOrBlank() && binding.ETdistOd.text.isNullOrBlank() && binding.ETpuslomedOd.text.isNullOrBlank()
-            && binding.ETpuslomaxOd.text.isNullOrBlank()&& binding.ETcaloriasOd.text.isNullOrBlank()&& binding.ETvmediaOd.text.isNullOrBlank()
-                && binding.ETvmaxOd.text.isNullOrBlank()&& binding.ETpendMediaOd.text.isNullOrBlank()&& binding.ETvmaxOd.text.isNullOrBlank()
-                && binding.ETdesnivelOd.text.isNullOrBlank()){
+        if(binding.ETtotaltimeOd.text.isNullOrBlank() || binding.ETdistOd.text.isNullOrBlank() || binding.ETpuslomedOd.text.isNullOrBlank()
+                || binding.ETpuslomaxOd.text.isNullOrBlank()|| binding.ETcaloriasOd.text.isNullOrBlank()|| binding.ETvmediaOd.text.isNullOrBlank()
+                || binding.ETvmaxOd.text.isNullOrBlank()|| binding.ETpendMediaOd.text.isNullOrBlank()|| binding.ETvmaxOd.text.isNullOrBlank()
+                || binding.ETdesnivelOd.text.isNullOrBlank()){
                 showAlert("Atención", "Todos los campos son obligatorios")
         }else{
             //INICIAR SPINER DE CARGA:
             saving.startSaving()
             if(!binding.ETnotasODtrainNew.text.isNullOrBlank()) notas = binding.ETnotasODtrainNew.text.toString()
-
                 val datosOutDoor = hashMapOf(
                         //CAMPOS OBLIGATORIOS:
                         "uid_user" to id_user,
@@ -156,7 +154,6 @@ class GuardarDatosOutdoor : AppCompatActivity() {
                         "desnivel" to binding.ETdesnivelOd.text.trim().toString().toInt(),
                         "notas" to notas
                 )
-
                 db.collection("entrenamientos")
                         .add(datosOutDoor)
                         .addOnSuccessListener {
@@ -169,9 +166,7 @@ class GuardarDatosOutdoor : AppCompatActivity() {
                         .addOnFailureListener {
                             showAlert("Error", "No se ha podido guardar el entrenamiento")
                         }
-
             Global.idSesionTrain=""
-
         }//else
     }//funcion
 

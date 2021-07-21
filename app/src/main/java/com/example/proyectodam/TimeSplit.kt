@@ -81,7 +81,7 @@ class TimeSplit : AppCompatActivity(){
     //GUARDAR LOS DATOS EN LA LISTA SI EL USUARIO SÓLO GUARDA UNA VUELTA TS
     fun almacenarDatos() {
         var notas: String = ""
-        if (binding.ETtramoTS.text.isNullOrBlank() && binding.ETminutesTS.text.isNullOrBlank() && binding.ETsecondsTS.text.isNullOrBlank() &&
+        if (binding.ETtramoTS.text.isNullOrBlank() || binding.ETminutesTS.text.isNullOrBlank() || binding.ETsecondsTS.text.isNullOrBlank() ||
                 binding.ETdistTS.text.isNullOrBlank()) {
             showAlert("Error", "Ningún campo puede estar vacío")
         } else {

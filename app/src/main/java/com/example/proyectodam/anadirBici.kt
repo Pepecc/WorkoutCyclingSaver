@@ -26,6 +26,10 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import java.security.Timestamp
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class anadirBici : AppCompatActivity() {
@@ -53,6 +57,8 @@ class anadirBici : AppCompatActivity() {
     private val REQUEST_CAMERA = 1002
 
     private var ruta : String = ""
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityAnadirBiciBinding.inflate(layoutInflater)
@@ -193,7 +199,7 @@ class anadirBici : AppCompatActivity() {
     }
 
     fun onDateSelected(day: Int, month: Int, year: Int) {
-        binding.ETfechaCompra.setText("$day/$month/$year")
+        binding.ETfechaCompra.setText("$day/${month+1}/$year")
     }
 
     fun showAlert(titulo: String, mensaje: String){
@@ -215,8 +221,8 @@ class anadirBici : AppCompatActivity() {
 
     fun addBici(){
 
-        if(binding.ETmarcaBici.text.isNullOrBlank() && binding.ETmodelBici.text.isNullOrBlank() && binding.ETtipoAddBici.text.isNullOrBlank() &&
-                binding.ETkmAddBici.text.isNullOrBlank() && binding.ETfechaCompra.text.isNullOrBlank()){
+        if(binding.ETmarcaBici.text.isNullOrBlank() || binding.ETmodelBici.text.isNullOrBlank() || binding.ETtipoAddBici.text.isNullOrBlank() ||
+                binding.ETkmAddBici.text.isNullOrBlank() || binding.ETfechaCompra.text.isNullOrBlank()){
                 showAlert("Error", "Ningún campo puede estar vacío")
         }else{
             //if(ruta!="")

@@ -42,7 +42,7 @@ class MenuInicial : AppCompatActivity() {
         binding.CVmiEspacio.setOnClickListener{
             abrirMiEspacio()
         }
-    }//override
+    }//onCreate
 
     override fun onBackPressed() {
         super.onBackPressed()

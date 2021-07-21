@@ -26,6 +26,8 @@ class visor_carreras : AppCompatActivity() {
 
     private val loading = LoadingDialog(this)
 
+    private var imgDel = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityVisorCarrerasBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -48,7 +50,12 @@ class visor_carreras : AppCompatActivity() {
 
         //MOSTRAR LA IMAGEN:
         var storageRef = FirebaseStorage.getInstance().reference.child("user/$imagen")
+        imgDel = "user/"+imagen.toString()
+
+        println("Ruta imagen "+imgDel)
+
         var localfile = File.createTempFile("tempImage", "jpg")
+
         loading.startLoading()
         storageRef.getFile(localfile).addOnSuccessListener {
             var bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
@@ -64,8 +71,6 @@ class visor_carreras : AppCompatActivity() {
         }
 
     }//onCreate
-
-
 
 
     fun showAlert(){
@@ -88,6 +93,9 @@ class visor_carreras : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "Error, no se pudo eliminar la carrera", Toast.LENGTH_SHORT).show()
                 }
+        //BORRAR LA IMAGEN:
+        var storageRef = FirebaseStorage.getInstance().reference.child(imgDel)
+        storageRef.delete()
         var intent = Intent(this, carreras::class.java)
         startActivity(intent)
     }

@@ -65,7 +65,7 @@ class GuardarDatosIndoor : AppCompatActivity() {
     }
 
     fun onDateSelected(day:Int, month:Int, year:Int){
-        binding.ETdateIndoor.setText("$day / $month / $year")
+        binding.ETdateIndoor.setText("$day/${month+1}/$year")
     }
 
     fun showAlert(titulo: String, mensaje: String){
@@ -88,9 +88,9 @@ class GuardarDatosIndoor : AppCompatActivity() {
 
     fun guardarDatosIndoor(){
         var notas: String = ""
-        if(binding.ETtotaltimeIndoor.text.isNullOrBlank() && binding.ETpulsomedIndoor.text.isNullOrBlank()
-                && binding.ETpulsomaxIndoor.text.isNullOrBlank() && binding.ETcaloriasIndoor.text.isNullOrBlank()
-                && binding.ETdateIndoor.text.isNullOrBlank()) {
+        if(binding.ETtotaltimeIndoor.text.isNullOrBlank() || binding.ETpulsomedIndoor.text.isNullOrBlank()
+                || binding.ETpulsomaxIndoor.text.isNullOrBlank() || binding.ETcaloriasIndoor.text.isNullOrBlank()
+                || binding.ETdateIndoor.text.isNullOrBlank()) {
             showAlert("Atención", "Ningún campo puede estar vacío")
         }else{
             saving.startSaving()
@@ -128,7 +128,7 @@ class GuardarDatosIndoor : AppCompatActivity() {
                         saving.isDimiss()
                        // showAlert("Datos guardados","Operación realizada con éxito")
                         //MOSTRAR UN TOAST COMO QUE SE HA GUARDADO BIEN
-                        Toast.makeText(this, "Datos guardados con éxito", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Entrenamiento guardado con éxito", Toast.LENGTH_SHORT).show()
                         limpiarCampos()
                         abrirHistorial()
                     }

@@ -1,5 +1,6 @@
 package com.example.proyectodam
 
+import android.app.DownloadManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_historial.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.example.proyectodam.utils.LoadingDialog
+import com.google.firebase.firestore.Query
 
 class Historial : AppCompatActivity(), (DatosRVoutdoor) -> Unit {
 
@@ -21,7 +23,7 @@ class Historial : AppCompatActivity(), (DatosRVoutdoor) -> Unit {
     private var uid_user = UserApp.prefs.getUserUid()
 
     //INSTANCIA DE LA CONEXION:
-    private var db = Firebase.firestore
+    private var db = Firebase.firestore.collection("entrenamientos")
 
     //PANTALLA DE CARGA:
     private val loading = LoadingDialog(this)
@@ -63,8 +65,8 @@ class Historial : AppCompatActivity(), (DatosRVoutdoor) -> Unit {
         loading.startLoading()
        var datosOutdoorTrain = arrayListOf<DatosRVoutdoor>()
         //CARGAR DATOS OUTDOOR:
-        db.collection("entrenamientos")
-                .whereEqualTo("uid_user", uid_user)
+               db.whereEqualTo("uid_user", uid_user)
+                       //.orderBy("fecha", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener { documents ->
                     if (documents.isEmpty) {
