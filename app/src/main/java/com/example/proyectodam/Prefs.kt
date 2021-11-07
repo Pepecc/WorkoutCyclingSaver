@@ -5,7 +5,6 @@ import android.content.Context
 class Prefs (context: Context){
     val SHARED_NAME: String = "Mydtb"
     val SHARED_USER_UID = "user_uid"
-
     val storage = context.getSharedPreferences(SHARED_NAME, 0)
 
     //GUARDAR UID DEL USUARIO:
@@ -17,5 +16,4 @@ class Prefs (context: Context){
     fun getUserUid(): String {
         return storage.getString(SHARED_USER_UID, "")!!
     }
-
 }

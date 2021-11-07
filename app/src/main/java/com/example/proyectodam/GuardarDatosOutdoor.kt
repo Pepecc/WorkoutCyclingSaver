@@ -13,8 +13,6 @@ import com.example.proyectodam.utils.SavingDialog
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-
-
 class GuardarDatosOutdoor : AppCompatActivity() {
 
     private lateinit var binding: ActivityGuardarDatosOutdoorBinding
@@ -30,16 +28,12 @@ class GuardarDatosOutdoor : AppCompatActivity() {
 
     private val idTS = System.currentTimeMillis().toString()
 
-    var idFinal : String = ""
     var indice : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityGuardarDatosOutdoorBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-       // generarID()
-
 
         //DEFINIR EL INPUT TYPE DE LOS CAMPOS NUMERICOS:
         binding.ETtotaltimeOd.setRawInputType(InputType.TYPE_CLASS_NUMBER)
@@ -68,19 +62,12 @@ class GuardarDatosOutdoor : AppCompatActivity() {
         binding.BTsaveOutdoorTrain.setOnClickListener{
             guardarDatosOutdoor()
         }
-
-        println("IDTS: "+idTS)
-
-
-    }//oncreate
-
-
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()
         startActivity(Intent(this, ChooseTraining::class.java))
     }
-
 
     private fun showDatePickerDialog() {
         val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year)}
@@ -101,7 +88,6 @@ class GuardarDatosOutdoor : AppCompatActivity() {
     }
 
     fun limpiarCampos(){
-
         //CAMPOS OBLIGATORIOS:
         binding.ETfechaOd.setText("  Selecciona Fecha")
         binding.ETtotaltimeOd.setText("")
@@ -122,11 +108,9 @@ class GuardarDatosOutdoor : AppCompatActivity() {
         startActivity(intent)
     }
 
-
     fun guardarDatosOutdoor(){
         var notas: String = ""
         var idDoc: String = ""
-        val ind = indice
         if(binding.ETtotaltimeOd.text.isNullOrBlank() || binding.ETdistOd.text.isNullOrBlank() || binding.ETpuslomedOd.text.isNullOrBlank()
                 || binding.ETpuslomaxOd.text.isNullOrBlank()|| binding.ETcaloriasOd.text.isNullOrBlank()|| binding.ETvmediaOd.text.isNullOrBlank()
                 || binding.ETvmaxOd.text.isNullOrBlank()|| binding.ETpendMediaOd.text.isNullOrBlank()|| binding.ETvmaxOd.text.isNullOrBlank()
@@ -167,7 +151,6 @@ class GuardarDatosOutdoor : AppCompatActivity() {
                             showAlert("Error", "No se ha podido guardar el entrenamiento")
                         }
             Global.idSesionTrain=""
-        }//else
-    }//funcion
-
-}//clase
+        }
+    }
+}

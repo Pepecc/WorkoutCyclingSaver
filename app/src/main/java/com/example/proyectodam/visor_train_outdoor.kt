@@ -7,9 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.constraintlayout.solver.widgets.ConstraintWidget.VISIBLE
-import androidx.core.view.isVisible
-import com.example.proyectodam.databinding.ActivityHistorialTimeSplitBinding
 import com.example.proyectodam.databinding.ActivityVisorTrainOutdoorBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -60,8 +57,6 @@ class visor_train_outdoor : AppCompatActivity() {
         }
 
         binding.BTverTS.setOnClickListener {
-            //Toast.makeText(applicationContext, "PULSADOOOOO", Toast.LENGTH_SHORT).show()
-
             val intent = Intent(this, HistorialTimeSplit :: class.java)
             intent.putExtra("idTS", idTs)
             startActivity(intent)
@@ -95,7 +90,7 @@ class visor_train_outdoor : AppCompatActivity() {
         binding.TVpendmaxVisorOD.setText("${pendmax.toString()} %")
         binding.TVnotasVisorODTitle.setText(notas.toString())
 
-    }//onCreate
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -125,8 +120,7 @@ class visor_train_outdoor : AppCompatActivity() {
             db.collection("timesplit")
                 .document()
 
-
             var intent = Intent(this, Historial::class.java)
             startActivity(intent)
     }
-}//clase
+}

@@ -6,15 +6,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.text.InputType
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.proyectodam.utils.SavingImage
-import com.example.proyectodam.utils.SavingDialog
 import androidx.core.content.ContextCompat
 import com.example.proyectodam.databinding.ActivityAnadirCarreraBinding
-import com.example.proyectodam.UserApp.Companion.prefs
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -32,13 +29,9 @@ class anadir_carrera : AppCompatActivity() {
 
     //PERMISOS:
     private val REQUEST_GALLERY = 1001
-    private val REQUEST_CAMERA = 1002
 
     //PANTALLA GUARDADO FOTO
     private val savinImg = SavingImage(this)
-
-    //PANTALLA DE GUARDANDO
-    private val saving = SavingDialog(this)
 
     private var ruta : String = ""
 
@@ -64,8 +57,7 @@ class anadir_carrera : AppCompatActivity() {
         binding.BTaddImageRace.setOnClickListener {
             subirImagenRace()
         }
-
-    }//override
+    }
 
     fun showAlert(titulo: String, mensaje: String){
         val builder = AlertDialog.Builder(this)
@@ -85,29 +77,8 @@ class anadir_carrera : AppCompatActivity() {
         binding.ETdateRace.setText("$day/${month+1}/$year")
     }
 
-
-
-        //FUNCION ABRIR GALERIA
-    fun abreGaleria(){
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-            requestGalleryPermission()
-        }
-    }
-
     fun subirImagenRace(){
         checkGalleryPermission()
-    }
-
-
-
-        private fun checkPermission() {
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ){
-            //permiso no aceptado
-            requestCameraPermission()
-        }else{
-            //abrir camara
-            openCamera()
-        }
     }
 
     private fun checkGalleryPermission(){
@@ -130,14 +101,11 @@ class anadir_carrera : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY){
-              savinImg.startSavingImg()
+            savinImg.startSavingImg()
 
             val imgFoto = data?.data
-
-
             val folder : StorageReference = FirebaseStorage.getInstance().getReference().child("user")
-           val filename : StorageReference = folder.child("file" + imgFoto!!.lastPathSegment)
-           // val filename : StorageReference = folder.child("file" + uri.lastPathSegment)
+            val filename : StorageReference = folder.child("file" + imgFoto!!.lastPathSegment)
             filename.putFile(imgFoto).addOnSuccessListener {
                 //ruta = it.storage.downloadUrl.toString()
                 ruta = it.storage.name
@@ -152,22 +120,10 @@ class anadir_carrera : AppCompatActivity() {
         }
     }
 
-
-
     private fun openCamera() {
        Toast.makeText(this, "Abriendo cámara", Toast.LENGTH_SHORT).show()
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, 0)
-    }
-
-    private fun requestCameraPermission() {
-       if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)){
-           //el usuario ya ha rechazado los permisos
-           Toast.makeText(this, "Permisos rechazados", Toast.LENGTH_SHORT).show()
-       }else{
-           //pedir permisos
-           ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 777)
-       }
     }
 
     private fun requestGalleryPermission() {
@@ -228,7 +184,6 @@ class anadir_carrera : AppCompatActivity() {
                        // showAlert("Error", "No se pudieron guardar los datos")
                         Toast.makeText(this, "Error, no se pudo guardar la carrera", Toast.LENGTH_SHORT).show()
                     }
-
         }
     }
 }

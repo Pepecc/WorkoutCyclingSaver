@@ -14,7 +14,6 @@ import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import com.example.proyectodam.utils.LoadingDialog
 
-
 class visor_bicicletas : AppCompatActivity() {
     private lateinit var binding : ActivityVisorBicicletasBinding
 
@@ -43,19 +42,18 @@ class visor_bicicletas : AppCompatActivity() {
         val fechacompra = bundle?.getString("fechacompra")
         val imagen = bundle?.getString("imagen")
 
-
         binding.TVtitleBicis.setText(marca + " " + modelo)
         binding.TVTipoBiciVisor.setText(tipo)
         binding.kmodometro.setText(odometro.toString())
         binding.TVfechaVisorID.setText(fechacompra)
 
         //MOSTRAR LA IMAGEN:
-            var storageRef = FirebaseStorage.getInstance().reference.child("user/$imagen")
+            val storageRef = FirebaseStorage.getInstance().reference.child("user/$imagen")
             imgDel = "user/" + imagen.toString()
-            var localfile = File.createTempFile("tempImage", "jpg")
+            val localfile = File.createTempFile("tempImage", "jpg")
             loading.startLoading()
             storageRef.getFile(localfile).addOnSuccessListener {
-                var bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+                val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
                 binding.ImagenBici.setImageBitmap(bitmap)
                 loading.isDimiss()
             }.addOnFailureListener {
@@ -63,12 +61,11 @@ class visor_bicicletas : AppCompatActivity() {
                 // Toast.makeText(this, "Error, no se pudo descargar la imagen", Toast.LENGTH_SHORT).show()
             }
 
-
         binding.BTborrarBicicleta.setOnClickListener {
             showAlert()
         }
 
-    }//onCreate
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -96,11 +93,11 @@ class visor_bicicletas : AppCompatActivity() {
                     Toast.makeText(this, "Error, no se pudo eliminar la bicicleta", Toast.LENGTH_SHORT).show()
                 }
         //BORRAR LA IMAGEN:
-        var storageRef = FirebaseStorage.getInstance().reference.child(imgDel)
+        val storageRef = FirebaseStorage.getInstance().reference.child(imgDel)
         storageRef.delete()
-        var intent = Intent(this, bicicletas::class.java)
+        val intent = Intent(this, bicicletas::class.java)
         startActivity(intent)
     }
 
 
-}//clase
+}

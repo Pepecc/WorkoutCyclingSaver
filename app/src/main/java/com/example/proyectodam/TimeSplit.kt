@@ -12,7 +12,6 @@ import com.example.proyectodam.utils.Global
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-
 class TimeSplit : AppCompatActivity(){
 
     //ID USUARIO PREFS
@@ -24,8 +23,7 @@ class TimeSplit : AppCompatActivity(){
     //BINDING:
     private lateinit var binding: ActivityTimeSplitBinding
 
-    //VARIABLE GLOBAL EN LA QUE GUARDO EL ID DEL ENTRENAMIENTO QUE
-    //LE LLEGA POR INTENT
+    //VARIABLE GLOBAL EN LA QUE GUARDO EL ID DEL ENTRENAMIENTO QUE LE LLEGA POR INTENT
     private var key : String =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +53,7 @@ class TimeSplit : AppCompatActivity(){
         binding.BTsaveTS.setOnClickListener {
             almacenarDatos()
         }
-    }//override
+    }
 
     fun showAlert(titulo: String, mensaje: String){
         val builder = AlertDialog.Builder(this)
@@ -150,5 +148,4 @@ class TimeSplit : AppCompatActivity(){
             limpiarCampos()
         }
     }//funcion
-
 }//clase

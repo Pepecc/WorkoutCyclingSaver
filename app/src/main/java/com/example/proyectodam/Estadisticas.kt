@@ -8,13 +8,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.proyectodam.databinding.ActivityEstadisticasBinding
 import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.charts.*
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-
 
 class Estadisticas : AppCompatActivity() {
 
@@ -28,23 +26,19 @@ class Estadisticas : AppCompatActivity() {
     private lateinit var binding : ActivityEstadisticasBinding
 
     //VARIABLES GLOBALES PARA GENERAR LAS ESTADÍSTICAS
-     var totalIndoor : Int = 0
-     var totalOutdoor : Int = 0
      var totalTimeIndoor : Int = 0
      var totalTimeOutdoor : Int = 0
      var totalTrain: Int = 10
      var contIndoor : Int = 0
      var contOutdoor : Int = 0
-    var totalCalsIndoor : Int = 0
-    var totalCalsOutdoor : Int = 0
-    var pulsoMedIndoor : Int = 0
-    var pulsoMaxIndor : Int = 0
-    var pulsoMedOutdoor : Int = 0
-    var pulsoMaxOutdoor : Int = 0
-    var vMed : Int = 0
-    var vMax : Int = 0
-    var puto : Int = 0
-
+     var totalCalsIndoor : Int = 0
+     var totalCalsOutdoor : Int = 0
+     var pulsoMedIndoor : Int = 0
+     var pulsoMaxIndor : Int = 0
+     var pulsoMedOutdoor : Int = 0
+     var pulsoMaxOutdoor : Int = 0
+     var vMed : Int = 0
+     var vMax : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityEstadisticasBinding.inflate(layoutInflater)
@@ -54,20 +48,7 @@ class Estadisticas : AppCompatActivity() {
         setupTarta()
 
         validarBD()
-
-
-        //rellenarDatosChart()
-
-        //rellenarDatosBarra()
-
-        //barraVertical()
-
-       // lineChart()
-
-
-        //calcularPrimerChart()
-
-    }//onCreate
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -83,7 +64,6 @@ class Estadisticas : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
-
     //VALIDAR QUE EL USUARIO TIENE DATOS EN FIREBASE:
     fun validarBD(){
         db.collection("entrenamientos")
@@ -97,7 +77,6 @@ class Estadisticas : AppCompatActivity() {
                     }
                 }
     }
-
     //CONTAR LOS ENTRENAMIENTOS INDOOR Y EL TIEMPO ENTRENADO:
     fun calcularIndoor(){
         db.collection("entrenamientos")
@@ -118,7 +97,6 @@ class Estadisticas : AppCompatActivity() {
             
                 }
     }
-
     //CONTAR LOS ENTRENAMIENTOS OUTDOOR Y EL TIEMPO ENTRENADO:
     fun calcularOutdoor(){
         db.collection("entrenamientos")
@@ -135,11 +113,9 @@ class Estadisticas : AppCompatActivity() {
                         vMax = document.data.get("velo_max").toString().toInt() + vMax
                         contOutdoor = documents.size()
                     }
-                    //calcularPrimerChart()
                 }.addOnFailureListener {
                     Toast.makeText(applicationContext, "Error al cargar los datos", Toast.LENGTH_SHORT).show()
                 }.addOnCompleteListener{
-
                     calcularPrimerChart()
                     calcularSegundoChart()
                     calcularTercerChart()
@@ -151,10 +127,10 @@ class Estadisticas : AppCompatActivity() {
     //CALCULAR EL PORCENTAJE DE CADA ENTRENAMIENTO Y PASARSELO A LA FUNCIÓN QUE LO PINTA
     fun calcularPrimerChart(){
         totalTrain = contIndoor+contOutdoor
-        var contIndFloat : Float = contIndoor.toFloat()
-        var contOutFloat : Float = contOutdoor.toFloat()
-           var calculoID : Float = (contIndFloat/totalTrain)*100
-           var calculoOD : Float = (contOutFloat/totalTrain)*100
+        val contIndFloat : Float = contIndoor.toFloat()
+        val contOutFloat : Float = contOutdoor.toFloat()
+        val calculoID : Float = (contIndFloat/totalTrain)*100
+        val calculoOD : Float = (contOutFloat/totalTrain)*100
 
         //PINTA LOS DATOS DE LA TARTA
         rellenarDatosChart(calculoID, calculoOD)
@@ -185,7 +161,6 @@ class Estadisticas : AppCompatActivity() {
         val vMaxF : Float = (vMax/contOutdoor).toFloat()
         rellenarBarraVelocidad(vMedF, vMaxF)
     }
-
     //PULSO:
     fun lineChart(med: Float, max: Float){
       val datosLinea = ArrayList<Entry>()
@@ -193,7 +168,6 @@ class Estadisticas : AppCompatActivity() {
         datosLinea.add(Entry(2f, med))
         datosLinea.add(Entry(3f, max))
        datosLinea.add(Entry(4f, 220f))
-        //datosLinea.add(Entry(5f, 200f))
 
         val v1 = LineDataSet(datosLinea, "Valores medios y máximos de pulso")
         v1.setDrawValues(true)
@@ -218,12 +192,7 @@ class Estadisticas : AppCompatActivity() {
         binding.CVstatsFour.setNoDataText("No forex yet")
 
         binding.CVstatsFour.animateX(1800, Easing.EaseInExpo)
-
-       // val markerView = CustomMarker
-
-
     }
-
     //CALORÍAS:
     fun barraVertical(calsID: Float, calsOD: Float){
         val datosBarra = ArrayList<BarEntry>()
@@ -264,10 +233,7 @@ class Estadisticas : AppCompatActivity() {
         binding.CVstatsFifth.invalidate()
         binding.CVstatsFifth.animateXY(2000,2000)
         binding.CVstatsFifth.description.text=""
-
     }
-
-
     //HORAS ENTRENAMIENTO:
     fun rellenarDatosBarra(ind: Float, out: Float){
         val datosBarra = ArrayList<BarEntry>()
@@ -289,7 +255,6 @@ class Estadisticas : AppCompatActivity() {
         binding.CVstatsSecond.animateXY(2000, 2000)
         binding.CVstatsSecond.description.text=""
     }
-
     //FUNCIÓN QUE CONFIGURA LA TARTA:
     fun setupTarta(){
         binding.CVstatsFirst.isDrawHoleEnabled
@@ -300,7 +265,6 @@ class Estadisticas : AppCompatActivity() {
         binding.CVstatsFirst.setCenterTextSize(24f)
         binding.CVstatsThird.description.text=""
     }
-
     //FUNCIÓN QUE RELLENA LOS DATOS DE LA TARTA:
     fun rellenarDatosChart(percentIndor: Float, percentOutdoor: Float){
         val colores = ArrayList<Int>()
@@ -311,7 +275,6 @@ class Estadisticas : AppCompatActivity() {
             datosTarta.add(PieEntry(percentIndor, "Entrenamiento indoor"))
             datosTarta.add(PieEntry(percentOutdoor, "Entrenamiento outdoor"))
         val dataSet = PieDataSet(datosTarta, "Tipo de entrenamientos")
-
 
         dataSet.setDrawIcons(false)
         dataSet.sliceSpace = 2f
@@ -330,7 +293,4 @@ class Estadisticas : AppCompatActivity() {
         binding.CVstatsFirst.invalidate()
         binding.CVstatsFirst.animateXY(2000, 2000)
     }
-
-
-
-}//clase
+}

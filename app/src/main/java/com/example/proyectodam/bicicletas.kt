@@ -1,7 +1,6 @@
 package com.example.proyectodam
 
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -11,10 +10,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.example.proyectodam.databinding.ActivityBicicletasBinding
 import kotlinx.android.synthetic.main.activity_bicicletas.*
-
 import com.example.proyectodam.UserApp.Companion.prefs
 import com.example.proyectodam.utils.LoadingDialog
-
 
 class bicicletas : AppCompatActivity(), (DatosRVbicis) -> Unit {
 
@@ -27,14 +24,9 @@ class bicicletas : AppCompatActivity(), (DatosRVbicis) -> Unit {
     //INSTANCIA DE LA COLECCION BICICLETAS:
     private var dbikes = db.collection("bicicletas")
 
-    //CONSULTA:
-    val query = dbikes.whereEqualTo("uid_user", uid_user)
-
-
     private lateinit var binding : ActivityBicicletasBinding
 
     private val loading = LoadingDialog(this)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -101,7 +93,7 @@ class bicicletas : AppCompatActivity(), (DatosRVbicis) -> Unit {
                     loading.isDimiss()
                     Toast.makeText(applicationContext, "Error" , Toast.LENGTH_SHORT).show()
        }
-    }//funcion
+    }
 
     override fun invoke(bicis: DatosRVbicis){
         val intent = Intent(this, visor_bicicletas::class.java)
@@ -114,6 +106,4 @@ class bicicletas : AppCompatActivity(), (DatosRVbicis) -> Unit {
         intent.putExtra("imagen", bicis.rutaImg)
         startActivity(intent)
     }
-
-
-    }//clase
+}

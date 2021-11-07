@@ -17,7 +17,6 @@ class SavingImage (val mActivity: Activity){
                 RotateAnimation.RELATIVE_TO_SELF, 0.5f)
         animation.duration = 3000
         animation.repeatCount = Animation.INFINITE
-        //animation.repeatMode = Animation.REVERSE
         view.startAnimation(animation)
     }
 

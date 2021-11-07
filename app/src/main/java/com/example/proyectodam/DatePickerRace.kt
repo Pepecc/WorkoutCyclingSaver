@@ -24,13 +24,8 @@ class DatePickerRace(val listener: (day:Int, month:Int, year:Int) -> Unit): Dial
 
         val picker = DatePickerDialog(activity as Context, R.style.datePickerTheme, this, year, month, day)
         c.add(Calendar.MONTH,0)
-         //picker.datePicker.minDate = c.timeInMillis
-        //picker.datePicker.minDate = c.timeInMillis
         c.add(Calendar.YEAR, 0)
-        // picker.datePicker.
-        //picker.datePicker.maxDate = c.timeInMillis
         return picker
     }
-
 
 }

@@ -7,14 +7,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.proyectodam.databinding.ActivityLoginBinding
-import com.example.proyectodam.databinding.ActivityMainBinding
 import com.example.proyectodam.utils.LoadingDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Pattern
-
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -26,27 +24,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
-
         binding.BTcrearUser.setOnClickListener {
             crearUsuario()
         }
 
-     /*   binding.CBterms.setOnClickListener {
-            intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-*/
         binding.TVaceptarTerms.setOnClickListener {
             intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
-    }
-
-    fun inicializarPass(){
-        binding.ETnewPass.setText("")
-        binding.ETconfirmPass.setText("")
     }
 
     fun showAlert(titulo: String, mensaje: String){
@@ -71,8 +56,6 @@ class LoginActivity : AppCompatActivity() {
         startActivity(menuIntent)
     }
 
-    //!validarEmail(binding.ETnewUser.text.toString())
-
     private fun crearUsuario() { //ABRE LA ACTIVITY MENU SI SE REGISTRA BIEN:
          if (binding.ETnewUser.text!!.isEmpty() && binding.ETnewPass.text!!.isEmpty() && binding.ETconfirmPass.text!!.isEmpty()) {
       //  if(binding.ETnewUser.text.isNullOrBlank() && binding.ETnewPass.text.isNullOrBlank() && binding.ETconfirmPass.text.isNullOrBlank()){
@@ -92,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
              loading.startLoading()
              FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                  if (it.isSuccessful) {
-                     var user = FirebaseAuth.getInstance().currentUser.uid
+                     val user = FirebaseAuth.getInstance().currentUser.uid
                      //showAlert("Login", "Usuario creado con éxito")
 
                      db.collection("user_col").document().set(
@@ -105,16 +88,10 @@ class LoginActivity : AppCompatActivity() {
                         showMenu(it.result?.user?.email?:"", ProviderType.BASIC)
                         loading.isDimiss()
                         Toast.makeText(applicationContext, "Usuario creado con éxito" , Toast.LENGTH_SHORT).show()
-                     //Aqui poner un loading
                  } else {
-                     //showAlert("Error", "No se pudo crear el usuario")
                      Toast.makeText(applicationContext, "Error, no se ha podido crear el usuario" , Toast.LENGTH_SHORT).show()
                  }
-             } //Firebase
+             }
      }
-    }//fun crear usuario
-
-
-
-
-}//clase
+    }
+}

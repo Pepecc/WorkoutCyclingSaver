@@ -1,20 +1,13 @@
 package com.example.proyectodam
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.proyectodam.databinding.ActivityVisorTrainIndoorBinding
 import kotlinx.android.synthetic.main.item_custom_view.view.*
 import kotlinx.android.synthetic.main.item_custom_view_outdoor.view.*
-import android.content.Intent
-import android.widget.ExpandableListView
 
 private const val tipo_indoor: Int = 0
 private const val tipo_outdoor: Int = 1
-
 private const val TAG = "VALOR DEL INT: "
 
 class DataAdapter(val datos:ArrayList<DatosRVoutdoor>, val clickListener: (DatosRVoutdoor) -> Unit):RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -28,7 +21,7 @@ class DataAdapter(val datos:ArrayList<DatosRVoutdoor>, val clickListener: (Datos
             val view = LayoutInflater.from(parent.context).inflate(R.layout.item_custom_view_outdoor, parent, false)
             DataHolderOutdoor(view)
         }
-                                            //,val clickListener : (DatosRVbicis) -> Unit
+
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -47,7 +40,6 @@ class DataAdapter(val datos:ArrayList<DatosRVoutdoor>, val clickListener: (Datos
             (holder as DataHolderOutdoor).render(datos[position], clickListener)
         }
     }
-    
 
     override fun getItemCount(): Int {
        return datos.size
@@ -56,7 +48,6 @@ class DataAdapter(val datos:ArrayList<DatosRVoutdoor>, val clickListener: (Datos
     //PARA LOS ENTRENAMIENTOS INDOOR:
     class DataHolder(val view: View):RecyclerView.ViewHolder(view){
         fun render(datos: DatosRVoutdoor, clickListener: (DatosRVoutdoor) -> Unit){
-
             view.TVcardFecha.text = "Fecha: " +datos.fecha
             view.TVcardTitle.text =  "Entrenamiento indoor"
             view.TVcardTotalTime.text = "Duración: "+datos.tiempo.toString()+"minutos"
@@ -65,9 +56,8 @@ class DataAdapter(val datos:ArrayList<DatosRVoutdoor>, val clickListener: (Datos
             view.cardTrain.setOnClickListener {
                 clickListener(datos)
             }
-        }//FUN RENDER
-    }//DATAHOLDER 1
-
+        }
+    }
 
     //VIEWHOLDER PARA LOS ENTRENAMIENTOS OUTDOOR:
     class DataHolderOutdoor(val view: View):RecyclerView.ViewHolder(view){
@@ -83,8 +73,6 @@ class DataAdapter(val datos:ArrayList<DatosRVoutdoor>, val clickListener: (Datos
             }
         }
     }//DATAHOLDER
-
-
 }
 
 

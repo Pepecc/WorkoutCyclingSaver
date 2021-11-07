@@ -1,9 +1,7 @@
 package com.example.proyectodam
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import com.example.proyectodam.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

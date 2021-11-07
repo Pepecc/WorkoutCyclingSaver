@@ -1,13 +1,9 @@
 package com.example.proyectodam
 
 import android.Manifest
-import android.R.attr
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.InputType
@@ -16,7 +12,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import com.example.proyectodam.UserApp.Companion.prefs
 import com.example.proyectodam.databinding.ActivityAnadirBiciBinding
 import com.example.proyectodam.utils.SavingDialog
@@ -26,19 +21,11 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
-import java.security.Timestamp
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
-
 
 class anadirBici : AppCompatActivity() {
 
     //INSTANCIA DE LA CONEXION:
     private var db = Firebase.firestore
-
-    //INSTANCIA DE STORAGE:
-    private var storage = Firebase.storage.reference
 
     //ID USUARIO PREFS
     private var uid_user = prefs.getUserUid()
@@ -54,11 +41,8 @@ class anadirBici : AppCompatActivity() {
 
     //PERMISOS:
     private val REQUEST_GALLERY = 1001
-    private val REQUEST_CAMERA = 1002
 
     private var ruta : String = ""
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityAnadirBiciBinding.inflate(layoutInflater)
@@ -89,25 +73,8 @@ class anadirBici : AppCompatActivity() {
         datePicker.show(supportFragmentManager, "datePicker")
     }
 
-    //FUNCION ABRIR GALERIA
-    fun abreGaleria(){
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-            requestGalleryPermission()
-        }
-    }
-
     fun subirImagenBici(){
         checkGalleryPermission()
-    }
-
-    private fun checkPermission() {
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ){
-            //permiso no aceptado
-            requestCameraPermission()
-        }else{
-            //abrir camara
-            openCamera()
-        }
     }
 
     private fun checkGalleryPermission(){
@@ -130,19 +97,13 @@ class anadirBici : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY){
-              savinImg.startSavingImg()
+            savinImg.startSavingImg()
 
             val imgFoto = data?.data
-
-
             val folder : StorageReference = FirebaseStorage.getInstance().getReference().child("user")
-           val filename : StorageReference = folder.child("file" + imgFoto!!.lastPathSegment)
-           // val filename : StorageReference = folder.child("file" + uri.lastPathSegment)
+            val filename : StorageReference = folder.child("file" + imgFoto!!.lastPathSegment)
             filename.putFile(imgFoto).addOnSuccessListener {
-                //ruta = it.storage.downloadUrl.toString()
                 ruta = it.storage.name
-                //ruta = it.storage.path
-                //filename.downloadUrl
                 savinImg.isDimissImg()
                 Toast.makeText(applicationContext, "Imagen subida con éxito", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener{
@@ -152,22 +113,10 @@ class anadirBici : AppCompatActivity() {
         }
     }
 
-
-
     private fun openCamera() {
        Toast.makeText(this, "Abriendo cámara", Toast.LENGTH_SHORT).show()
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, 0)
-    }
-
-    private fun requestCameraPermission() {
-       if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)){
-           //el usuario ya ha rechazado los permisos
-           Toast.makeText(this, "Permisos rechazados", Toast.LENGTH_SHORT).show()
-       }else{
-           //pedir permisos
-           ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 777)
-       }
     }
 
     private fun requestGalleryPermission() {
@@ -220,12 +169,10 @@ class anadirBici : AppCompatActivity() {
     }
 
     fun addBici(){
-
         if(binding.ETmarcaBici.text.isNullOrBlank() || binding.ETmodelBici.text.isNullOrBlank() || binding.ETtipoAddBici.text.isNullOrBlank() ||
                 binding.ETkmAddBici.text.isNullOrBlank() || binding.ETfechaCompra.text.isNullOrBlank()){
                 showAlert("Error", "Ningún campo puede estar vacío")
         }else{
-            //if(ruta!="")
             saving.startSaving()
             val datosBici = hashMapOf(
                     "uid_user" to uid_user,
@@ -255,7 +202,4 @@ class anadirBici : AppCompatActivity() {
         val intent = Intent(this, bicicletas::class.java)
         startActivity(intent)
     }
-
-
-
-}//clase
+}

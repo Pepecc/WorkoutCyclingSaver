@@ -1,6 +1,5 @@
 package com.example.proyectodam
 
-import android.app.DownloadManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +11,6 @@ import kotlinx.android.synthetic.main.activity_historial.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.example.proyectodam.utils.LoadingDialog
-import com.google.firebase.firestore.Query
 
 class Historial : AppCompatActivity(), (DatosRVoutdoor) -> Unit {
 
@@ -60,13 +58,11 @@ class Historial : AppCompatActivity(), (DatosRVoutdoor) -> Unit {
         dialog.show()
     }
 
-
     fun buscarDatos() {
         loading.startLoading()
-       var datosOutdoorTrain = arrayListOf<DatosRVoutdoor>()
+       val datosOutdoorTrain = arrayListOf<DatosRVoutdoor>()
         //CARGAR DATOS OUTDOOR:
                db.whereEqualTo("uid_user", uid_user)
-                       //.orderBy("fecha", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener { documents ->
                     if (documents.isEmpty) {
@@ -97,12 +93,11 @@ class Historial : AppCompatActivity(), (DatosRVoutdoor) -> Unit {
                             rvDatosTotales.layoutManager = LinearLayoutManager(this)
                             val adapter2 = DataAdapter(datosOutdoorTrain, this)
                             rvDatosTotales.adapter = adapter2
-                         //   adapter2.notifyDataSetChanged()
-                    }//for
+                    }
                     }.addOnFailureListener {
                         Toast.makeText(applicationContext, "Error al cargar los datos", Toast.LENGTH_SHORT).show()
                     }
-    }//funcion
+    }
 
     override fun invoke(datos: DatosRVoutdoor) {
         if(datos.tipo == "indoor"){

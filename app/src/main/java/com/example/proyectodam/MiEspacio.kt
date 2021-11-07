@@ -23,7 +23,6 @@ class MiEspacio : AppCompatActivity() {
         binding.CVmisTrains.setOnClickListener {
             abrirTrainings()
         }
-
     }
 
     override fun onBackPressed() {

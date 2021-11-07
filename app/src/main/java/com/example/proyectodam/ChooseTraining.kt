@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.example.proyectodam.databinding.ActivityChooseTrainingBinding
 import android.content.Intent
 
-
 class ChooseTraining : AppCompatActivity() {
     private lateinit var binding: ActivityChooseTrainingBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +20,7 @@ class ChooseTraining : AppCompatActivity() {
             abrirIndoorTrain()
         }
 
-    }//oncreate
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()

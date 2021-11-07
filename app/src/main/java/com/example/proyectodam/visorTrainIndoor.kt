@@ -45,8 +45,7 @@ class visorTrainIndoor : AppCompatActivity() {
         binding.TVpulsMedvisorID.setText(" ${pulsmed.toString()} ppm")
         binding.TVpulsMaxvisorID.setText(" ${pulsmax.toString()} ppm")
         binding.TVnotesID.setText(notas)
-    }//onCreate
-
+    }
 
     fun showAlert(){
         val builder = AlertDialog.Builder(this)
@@ -73,9 +72,7 @@ class visorTrainIndoor : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "Error, no se pudo eliminar el entrenamiento", Toast.LENGTH_SHORT).show()
                 }
-        var intent = Intent(this, Historial::class.java)
+        val intent = Intent(this, Historial::class.java)
         startActivity(intent)
     }
-
-
-}//clase
+}

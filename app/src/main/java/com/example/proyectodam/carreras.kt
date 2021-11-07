@@ -12,7 +12,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_carreras.*
 
-//class bicicletas : AppCompatActivity(), (DatosRVbicis) -> Unit {
 class carreras : AppCompatActivity(), (DatosRVraces) -> Unit {
 
     //INSTANCIA DE LA CONEXION:
@@ -35,7 +34,7 @@ class carreras : AppCompatActivity(), (DatosRVraces) -> Unit {
         binding.BTaddRaceBtn.setOnClickListener{
             addRaces()
         }
-    }//override
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -69,7 +68,6 @@ class carreras : AppCompatActivity(), (DatosRVraces) -> Unit {
                 }
                 for (document in result) {
                     datosRaces.add(
-                   // val datosRaces  = listOf(
                         DatosRVraces(
                                 id = document.id,
                                 name = document.get("name_race").toString(),
@@ -84,14 +82,14 @@ class carreras : AppCompatActivity(), (DatosRVraces) -> Unit {
                     rvMisRaces.layoutManager = LinearLayoutManager(this)
                     val adapter = RaceAdapter(datosRaces, this)
                     rvMisRaces.adapter = adapter
-                }//for
+                }
 
             }//succesListener
             .addOnFailureListener {
                 Toast.makeText(applicationContext, "Error al cargar los datos", Toast.LENGTH_SHORT).show()
             }
 
-    }//funcion
+    }
 
     override fun invoke(races: DatosRVraces) {
         val intent = Intent(this, visor_carreras::class.java)
@@ -104,5 +102,4 @@ class carreras : AppCompatActivity(), (DatosRVraces) -> Unit {
         intent.putExtra("imagen", races.rutaImg)
         startActivity(intent)
     }
-
 }

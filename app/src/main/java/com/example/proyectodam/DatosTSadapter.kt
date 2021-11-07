@@ -22,7 +22,6 @@ class DatosTSadapter (val ts: ArrayList<DatosRVtimeSplit>, val clickListener: (D
         return ts.size
     }
 
-
     class DataHolder(val view: View):RecyclerView.ViewHolder(view){
         fun render(ts: DatosRVtimeSplit, clickListener: (DatosRVtimeSplit) -> Unit){
             view.TVcardLapTS.text = "Distancia  "+ts.dist+" km"
@@ -31,7 +30,4 @@ class DatosTSadapter (val ts: ArrayList<DatosRVtimeSplit>, val clickListener: (D
             view.TVcardNotasTS.text = "Notas:  "+ts.notas
         }
     }
-
-
-
 }

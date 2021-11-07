@@ -49,29 +49,26 @@ class visor_carreras : AppCompatActivity() {
         binding.TVlocaliz.setText(localiz.toString())
 
         //MOSTRAR LA IMAGEN:
-        var storageRef = FirebaseStorage.getInstance().reference.child("user/$imagen")
+        val storageRef = FirebaseStorage.getInstance().reference.child("user/$imagen")
         imgDel = "user/"+imagen.toString()
 
         println("Ruta imagen "+imgDel)
 
-        var localfile = File.createTempFile("tempImage", "jpg")
+        val localfile = File.createTempFile("tempImage", "jpg")
 
         loading.startLoading()
         storageRef.getFile(localfile).addOnSuccessListener {
-            var bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+            val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
             binding.ImgPerfilCarrera.setImageBitmap(bitmap)
             loading.isDimiss()
         }.addOnFailureListener{
             loading.isDimiss()
-           // Toast.makeText(this, "Error, no se pudo descargar la imagen", Toast.LENGTH_SHORT).show()
         }
 
         binding.BTborrarCarrera.setOnClickListener {
             showAlert()
         }
-
-    }//onCreate
-
+    }
 
     fun showAlert(){
         val builder = AlertDialog.Builder(this)
@@ -94,11 +91,9 @@ class visor_carreras : AppCompatActivity() {
                     Toast.makeText(this, "Error, no se pudo eliminar la carrera", Toast.LENGTH_SHORT).show()
                 }
         //BORRAR LA IMAGEN:
-        var storageRef = FirebaseStorage.getInstance().reference.child(imgDel)
+        val storageRef = FirebaseStorage.getInstance().reference.child(imgDel)
         storageRef.delete()
-        var intent = Intent(this, carreras::class.java)
+        val intent = Intent(this, carreras::class.java)
         startActivity(intent)
     }
-
-
-}//Clase
+}

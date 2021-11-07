@@ -3,23 +3,18 @@ package com.example.proyectodam
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.example.proyectodam.databinding.ActivityInicialBinding
 import com.example.proyectodam.utils.LoadingDialog
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import java.util.regex.Pattern
 
 
 class ActivityInicial : AppCompatActivity() {
-    val EMPTY_VALUE = ""
 
     private lateinit var binding: ActivityInicialBinding
-    //private lateinit var mAuth: FirebaseAuth
 
     private val loading = LoadingDialog(this)
 
@@ -35,12 +30,10 @@ class ActivityInicial : AppCompatActivity() {
         }
 
         binding.BTlogin.setOnClickListener{
-
             loguearUsuario()
         }
 
-
-    }//override
+    }
 
     fun showAlert(titulo: String, mensaje: String){
         val builder = AlertDialog.Builder(this)
@@ -61,32 +54,9 @@ class ActivityInicial : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun AbrirMenu(){
-        //val intent = Intent(this, ActivityMenuInicial::class.java)
-        val intent = Intent(this, MenuInicial::class.java)
-        startActivity(intent)
-    }
-
-    fun AbrirDatosInd(){
-        val intent = Intent(this, GuardarDatosIndoor::class.java)
-        startActivity(intent)
-    }
-
-    fun AbrirDatosOut(){
-        val intent = Intent(this, GuardarDatosOutdoor::class.java)
-        startActivity(intent)
-    }
-
     private fun validarEmail(email: String): Boolean {
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
         return pattern.matcher(email).matches()
-    }
-
-    private fun loginUser(){
-        val email = binding.ETuser.text.toString()
-        val pass = binding.ETpass.text.toString()
-
-      //  mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this)
     }
 
     fun showMenu(email: String, provider: ProviderType){
@@ -112,9 +82,7 @@ class ActivityInicial : AppCompatActivity() {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                 if (it.isSuccessful) {
                     loading.isDimiss()
-                    //showAlert("Login", "Usuario creado con éxito")
                     showMenu(it.result?.user?.email?:"", ProviderType.BASIC)
-                    //Aqui poner un loading
                     Toast.makeText(applicationContext, "Sesión iniciada $email ", Toast.LENGTH_SHORT).show()
                 } else {
                     loading.isDimiss()
@@ -123,6 +91,4 @@ class ActivityInicial : AppCompatActivity() {
             } //Firebase
         }
     }
-
-
 }

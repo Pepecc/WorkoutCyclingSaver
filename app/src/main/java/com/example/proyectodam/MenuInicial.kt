@@ -20,16 +20,12 @@ class MenuInicial : AppCompatActivity() {
     //RECUPERAR EL UID DEL USUARIO ACTUAL:
     private var user = FirebaseAuth.getInstance().currentUser.uid
 
-    private var db = Firebase.firestore
-
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMenuInicialBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         guardarUid()
-
-
 
         binding.CVguardar.setOnClickListener{
             abrirMenuTrain()
@@ -42,7 +38,7 @@ class MenuInicial : AppCompatActivity() {
         binding.CVmiEspacio.setOnClickListener{
             abrirMiEspacio()
         }
-    }//onCreate
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -53,7 +49,6 @@ class MenuInicial : AppCompatActivity() {
     fun guardarUid(){
         prefs.saveUserUid(user)
     }
-
 
     fun abrirMenuTrain(){
         val intent = Intent(this, ChooseTraining::class.java)
@@ -70,5 +65,4 @@ class MenuInicial : AppCompatActivity() {
         val intent = Intent(this, MiEspacio::class.java)
         startActivity(intent)
     }
-
 }

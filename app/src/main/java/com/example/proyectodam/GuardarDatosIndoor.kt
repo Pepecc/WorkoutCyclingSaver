@@ -3,14 +3,12 @@ package com.example.proyectodam
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.text.InputType
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.proyectodam.UserApp.Companion.prefs
 import com.example.proyectodam.databinding.ActivityGuardarDatosIndoorBinding
-import com.example.proyectodam.utils.LoadingDialog
 import com.example.proyectodam.utils.SavingDialog
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -28,7 +26,6 @@ class GuardarDatosIndoor : AppCompatActivity() {
 
     //PANTALLA DE GUARDANDO
     private val saving = SavingDialog(this)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityGuardarDatosIndoorBinding.inflate(layoutInflater)
@@ -48,8 +45,7 @@ class GuardarDatosIndoor : AppCompatActivity() {
         binding.ETdateIndoor.setOnClickListener{
             showDatePickerDialog()
         }
-
-    }//override
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -57,9 +53,6 @@ class GuardarDatosIndoor : AppCompatActivity() {
     }
 
     private fun showDatePickerDialog(){
-        val valorMesMin = 3
-        val valorMax = 0
-
         val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year)}
         datePicker.show(supportFragmentManager, "datePicker")
     }
@@ -110,11 +103,11 @@ class GuardarDatosIndoor : AppCompatActivity() {
                     //CAMPOS OUTDOOR:
                 "desnivel" to 1,
                 "distancia" to 1f,
-                    "pend_max" to 1,
-                 "pend_med" to 1,
-                 "velo_max" to 1,
-                 "velo_med" to 1,
-                 "timesplitID" to "",
+                "pend_max" to 1,
+                "pend_med" to 1,
+                "velo_max" to 1,
+                "velo_med" to 1,
+                "timesplitID" to "",
             )
 
             db.collection("entrenamientos") //antes entrenamientos_indoor
@@ -122,11 +115,10 @@ class GuardarDatosIndoor : AppCompatActivity() {
                     //aqui poner una pantalla de carga mientras llama a firebase
                     .addOnSuccessListener { documentReference ->
 
-                        var cadena = null
+                        val cadena = null
 
                         Log.d(cadena, "Documento guardado con id ${documentReference.id}")
                         saving.isDimiss()
-                       // showAlert("Datos guardados","Operación realizada con éxito")
                         //MOSTRAR UN TOAST COMO QUE SE HA GUARDADO BIEN
                         Toast.makeText(this, "Entrenamiento guardado con éxito", Toast.LENGTH_SHORT).show()
                         limpiarCampos()
@@ -136,14 +128,10 @@ class GuardarDatosIndoor : AppCompatActivity() {
                         showAlert("Error", "No se ha podido guardar el entrenamiento")
                     }
         }
-
-
     }
 
     private fun abrirHistorial() {
         val intent = Intent(this, Historial::class.java)
         startActivity(intent)
     }
-
-
-}//clase
+}

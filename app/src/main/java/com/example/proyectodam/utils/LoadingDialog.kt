@@ -19,12 +19,10 @@ class LoadingDialog(val mActivity: Activity) {
                 RotateAnimation.RELATIVE_TO_SELF, 0.5f)
         animation.duration = 3000
         animation.repeatCount = Animation.INFINITE
-        //animation.repeatMode = Animation.REVERSE
         view.startAnimation(animation)
     }
 
     fun startLoading(){
-
         val inflater = mActivity.layoutInflater
         val dialogView = inflater.inflate(R.layout.loading_item, null)
         val builder = AlertDialog.Builder(mActivity)
@@ -35,8 +33,6 @@ class LoadingDialog(val mActivity: Activity) {
         isdialog.show()
 
         rotarImagen(dialogView.logorotao)
-
-
     }
 
     fun isDimiss(){

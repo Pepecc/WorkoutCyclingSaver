@@ -37,7 +37,7 @@ class HistorialTimeSplit : AppCompatActivity(), (DatosRVtimeSplit) -> Unit {
         //val idTs : String? = bundle?.getString("idTS")
         id = bundle?.getString("idTS").toString()
         buscarDatos()
-    }//onCreate
+    }
 
     fun showAlert(titulo: String, mensaje: String){
         val builder = AlertDialog.Builder(this)
@@ -50,7 +50,7 @@ class HistorialTimeSplit : AppCompatActivity(), (DatosRVtimeSplit) -> Unit {
 
     fun buscarDatos() {
         loading.startLoading()
-        var registrosTimeSplit = arrayListOf<DatosRVtimeSplit>()
+        val registrosTimeSplit = arrayListOf<DatosRVtimeSplit>()
         //CARGAR DATOS DE FIREBASE:
         db.collection("timesplit")
             .whereEqualTo("idSesion", id)
@@ -80,10 +80,10 @@ class HistorialTimeSplit : AppCompatActivity(), (DatosRVtimeSplit) -> Unit {
             }.addOnFailureListener {
                 Toast.makeText(applicationContext, "Error al cargar los datos", Toast.LENGTH_SHORT).show()
             }
-    }//funcion
+    }
 
     override fun invoke(ts: DatosRVtimeSplit) {
 
     }
 
-}//clase
+}
