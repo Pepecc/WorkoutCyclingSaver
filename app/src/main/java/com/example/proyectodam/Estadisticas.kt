@@ -65,7 +65,7 @@ class Estadisticas : AppCompatActivity() {
         dialog.show()
     }
     //VALIDAR QUE EL USUARIO TIENE DATOS EN FIREBASE:
-    fun validarBD(){
+    private fun validarBD(){
         db.collection("entrenamientos")
                 .whereEqualTo("uid_user", uid_user).get().addOnSuccessListener { documents ->
                     if(documents.isEmpty){
@@ -78,7 +78,7 @@ class Estadisticas : AppCompatActivity() {
                 }
     }
     //CONTAR LOS ENTRENAMIENTOS INDOOR Y EL TIEMPO ENTRENADO:
-    fun calcularIndoor(){
+    private fun calcularIndoor(){
         db.collection("entrenamientos")
                 .whereEqualTo("uid_user", uid_user)
                 .whereEqualTo("tipo_train", "indoor")
@@ -98,7 +98,7 @@ class Estadisticas : AppCompatActivity() {
                 }
     }
     //CONTAR LOS ENTRENAMIENTOS OUTDOOR Y EL TIEMPO ENTRENADO:
-    fun calcularOutdoor(){
+    private fun calcularOutdoor(){
         db.collection("entrenamientos")
                 .whereEqualTo("uid_user", uid_user)
                 .whereEqualTo("tipo_train", "outdoor")
@@ -125,7 +125,7 @@ class Estadisticas : AppCompatActivity() {
     }
 
     //CALCULAR EL PORCENTAJE DE CADA ENTRENAMIENTO Y PASARSELO A LA FUNCIÓN QUE LO PINTA
-    fun calcularPrimerChart(){
+    private fun calcularPrimerChart(){
         totalTrain = contIndoor+contOutdoor
         val contIndFloat : Float = contIndoor.toFloat()
         val contOutFloat : Float = contOutdoor.toFloat()
@@ -136,19 +136,19 @@ class Estadisticas : AppCompatActivity() {
         rellenarDatosChart(calculoID, calculoOD)
     }
 
-    fun calcularSegundoChart(){
+    private fun calcularSegundoChart(){
         val totalIND : Float = totalTimeIndoor/60.toFloat()
         val totalOUT : Float = totalTimeOutdoor/60.toFloat()
         rellenarDatosBarra(totalIND, totalOUT)
     }
 
-    fun calcularTercerChart(){
+    private fun calcularTercerChart(){
         val totalCalsID : Float = totalCalsIndoor.toFloat()
         val totalCalsOD : Float = totalCalsOutdoor.toFloat()
         barraVertical(totalCalsID, totalCalsOD)
     }
 
-    fun calcularCuartoChart(){
+    private fun calcularCuartoChart(){
         val mediaPuls : Float = (pulsoMedIndoor+pulsoMedOutdoor)/totalTrain.toFloat()
         val maxPuls : Float = (pulsoMaxIndor+pulsoMaxOutdoor)/totalTrain.toFloat()
         println("MEDIA PULSO TOTAL" + mediaPuls)
@@ -156,13 +156,13 @@ class Estadisticas : AppCompatActivity() {
         lineChart(mediaPuls, maxPuls)
     }
 
-    fun calcularQuintoChart(){
+    private fun calcularQuintoChart(){
         val vMedF : Float = (vMed/contOutdoor).toFloat()
         val vMaxF : Float = (vMax/contOutdoor).toFloat()
         rellenarBarraVelocidad(vMedF, vMaxF)
     }
     //PULSO:
-    fun lineChart(med: Float, max: Float){
+    private fun lineChart(med: Float, max: Float){
       val datosLinea = ArrayList<Entry>()
         datosLinea.add(Entry(1f, 100f))
         datosLinea.add(Entry(2f, med))
@@ -194,7 +194,7 @@ class Estadisticas : AppCompatActivity() {
         binding.CVstatsFour.animateX(1800, Easing.EaseInExpo)
     }
     //CALORÍAS:
-    fun barraVertical(calsID: Float, calsOD: Float){
+    private fun barraVertical(calsID: Float, calsOD: Float){
         val datosBarra = ArrayList<BarEntry>()
         datosBarra.add(BarEntry(0f, calsOD))
         datosBarra.add(BarEntry(1f, calsID))
@@ -213,7 +213,7 @@ class Estadisticas : AppCompatActivity() {
     }
 
     //VELOCIDAD MEDIA Y MAXIMA
-    fun rellenarBarraVelocidad(med: Float, max: Float){
+    private fun rellenarBarraVelocidad(med: Float, max: Float){
         val datosVelo = ArrayList<BarEntry>()
         datosVelo.add(BarEntry(2f, med, "Velocidad media"))
         datosVelo.add(BarEntry(1f, max, "Velocidad máxima"))
@@ -235,7 +235,7 @@ class Estadisticas : AppCompatActivity() {
         binding.CVstatsFifth.description.text=""
     }
     //HORAS ENTRENAMIENTO:
-    fun rellenarDatosBarra(ind: Float, out: Float){
+    private fun rellenarDatosBarra(ind: Float, out: Float){
         val datosBarra = ArrayList<BarEntry>()
             datosBarra.add(BarEntry(2f, ind, "Entrenamiento indoor"))
             datosBarra.add(BarEntry(1f, out, "Entrenamiento outdoor"))
@@ -256,7 +256,7 @@ class Estadisticas : AppCompatActivity() {
         binding.CVstatsSecond.description.text=""
     }
     //FUNCIÓN QUE CONFIGURA LA TARTA:
-    fun setupTarta(){
+    private fun setupTarta(){
         binding.CVstatsFirst.isDrawHoleEnabled
         binding.CVstatsFirst.setUsePercentValues(true)
         binding.CVstatsFirst.setEntryLabelTextSize(18f)
@@ -266,7 +266,7 @@ class Estadisticas : AppCompatActivity() {
         binding.CVstatsThird.description.text=""
     }
     //FUNCIÓN QUE RELLENA LOS DATOS DE LA TARTA:
-    fun rellenarDatosChart(percentIndor: Float, percentOutdoor: Float){
+    private fun rellenarDatosChart(percentIndor: Float, percentOutdoor: Float){
         val colores = ArrayList<Int>()
         colores.add(R.color.verderolo)
         colores.add(R.color.teal_200)
