@@ -80,7 +80,7 @@ class visor_carreras : AppCompatActivity() {
         dialog.show()
     }
 
-    fun borrarRegistro(){
+    private fun borrarRegistro(){
         db.collection("carreras")
                 .document(idDoc)
                 .delete()
@@ -93,7 +93,7 @@ class visor_carreras : AppCompatActivity() {
         //BORRAR LA IMAGEN:
         val storageRef = FirebaseStorage.getInstance().reference.child(imgDel)
         storageRef.delete()
-        val intent = Intent(this, carreras::class.java)
+        val intent = Intent(this, Carreras::class.java)
         startActivity(intent)
     }
 }

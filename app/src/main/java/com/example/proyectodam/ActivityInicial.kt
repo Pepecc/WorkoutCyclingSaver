@@ -25,7 +25,7 @@ class ActivityInicial : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.BTregister.setOnClickListener{
-            AbrirRegistro()
+            abrirRegistro()
 
         }
 
@@ -49,7 +49,7 @@ class ActivityInicial : AppCompatActivity() {
         super.finish()
     }
 
-    fun AbrirRegistro(){
+    private fun abrirRegistro(){
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
@@ -59,7 +59,7 @@ class ActivityInicial : AppCompatActivity() {
         return pattern.matcher(email).matches()
     }
 
-    fun showMenu(email: String, provider: ProviderType){
+    private fun showMenu(email: String, provider: ProviderType){
         val menuIntent = Intent(this, MenuInicial::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)

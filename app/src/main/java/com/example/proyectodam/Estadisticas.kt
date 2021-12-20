@@ -69,7 +69,7 @@ class Estadisticas : AppCompatActivity() {
         db.collection("entrenamientos")
                 .whereEqualTo("uid_user", uid_user).get().addOnSuccessListener { documents ->
                     if(documents.isEmpty){
-                        showAlert("Atención", "No hay estadísticas porque aún no has guardado  ningún entrenamiento.")
+                        showAlert("Atención", "No hay estadísticas porque aún no has guardado ningún entrenamiento.")
                     }
                     else{
                         calcularIndoor()
@@ -167,7 +167,7 @@ class Estadisticas : AppCompatActivity() {
         datosLinea.add(Entry(1f, 100f))
         datosLinea.add(Entry(2f, med))
         datosLinea.add(Entry(3f, max))
-       datosLinea.add(Entry(4f, 220f))
+        datosLinea.add(Entry(4f, 220f))
 
         val v1 = LineDataSet(datosLinea, "Valores medios y máximos de pulso")
         v1.setDrawValues(true)

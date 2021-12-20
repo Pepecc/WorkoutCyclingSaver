@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
             cerrar()
         }
     }
-    fun cerrar(){
+    private fun cerrar(){
         this.finish()
     }
 }

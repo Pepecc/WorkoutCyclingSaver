@@ -69,7 +69,7 @@ class visor_bicicletas : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(this, bicicletas::class.java))
+        startActivity(Intent(this, Bicicletas::class.java))
     }
 
     fun showAlert(){
@@ -82,7 +82,7 @@ class visor_bicicletas : AppCompatActivity() {
         dialog.show()
     }
 
-    fun borrarRegistro(){
+    private fun borrarRegistro(){
         db.collection("bicicletas")
                 .document(idDoc)
                 .delete()
@@ -95,7 +95,7 @@ class visor_bicicletas : AppCompatActivity() {
         //BORRAR LA IMAGEN:
         val storageRef = FirebaseStorage.getInstance().reference.child(imgDel)
         storageRef.delete()
-        val intent = Intent(this, bicicletas::class.java)
+        val intent = Intent(this, Bicicletas::class.java)
         startActivity(intent)
     }
 

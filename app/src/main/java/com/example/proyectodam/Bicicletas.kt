@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_bicicletas.*
 import com.example.proyectodam.UserApp.Companion.prefs
 import com.example.proyectodam.utils.LoadingDialog
 
-class bicicletas : AppCompatActivity(), (DatosRVbicis) -> Unit {
+class Bicicletas : AppCompatActivity(), (DatosRVbicis) -> Unit {
 
     //ID USUARIO PREFS
     private var uid_user = prefs.getUserUid()
@@ -37,7 +37,7 @@ class bicicletas : AppCompatActivity(), (DatosRVbicis) -> Unit {
         buscarDatos()
 
         binding.BTaddBikeHist.setOnClickListener{
-            val intent = Intent(this, anadirBici::class.java)
+            val intent = Intent(this, AnadirBici::class.java)
             startActivity(intent)
         }
     }
@@ -56,7 +56,7 @@ class bicicletas : AppCompatActivity(), (DatosRVbicis) -> Unit {
         dialog.show()
     }
 
-    fun buscarDatos() {
+    private fun buscarDatos() {
         loading.startLoading()
         val datosBicis = arrayListOf<DatosRVbicis>()
         db.collection("bicicletas")

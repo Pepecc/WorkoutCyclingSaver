@@ -30,18 +30,18 @@ class MiEspacio : AppCompatActivity() {
         startActivity(Intent(this, MenuInicial::class.java))
     }
 
-    fun abrirTrainings(){
+    private fun abrirTrainings(){
         val intent = Intent(this, Historial::class.java)
         startActivity(intent)
     }
 
-    fun abrirBicis(){
-        val intent = Intent(this, bicicletas::class.java)
+    private fun abrirBicis(){
+        val intent = Intent(this, Bicicletas::class.java)
         startActivity(intent)
     }
 
-    fun abrirCarreras(){
-        val intent = Intent(this, carreras::class.java)
+    private fun abrirCarreras(){
+        val intent = Intent(this, Carreras::class.java)
         startActivity(intent)
     }
 }

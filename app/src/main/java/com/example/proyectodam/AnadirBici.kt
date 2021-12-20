@@ -1,83 +1,77 @@
 package com.example.proyectodam
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.InputType
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.proyectodam.utils.SavingImage
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.proyectodam.databinding.ActivityAnadirCarreraBinding
+import com.example.proyectodam.UserApp.Companion.prefs
+import com.example.proyectodam.databinding.ActivityAnadirBiciBinding
+import com.example.proyectodam.utils.SavingDialog
+import com.example.proyectodam.utils.SavingImage
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import android.provider.MediaStore
-import androidx.core.app.ActivityCompat
 
-class anadir_carrera : AppCompatActivity() {
+class AnadirBici : AppCompatActivity() {
 
     //INSTANCIA DE LA CONEXION:
     private var db = Firebase.firestore
 
     //ID USUARIO PREFS
-    private var uid_user = UserApp.prefs.getUserUid()
+    private var uid_user = prefs.getUserUid()
 
-    //PERMISOS:
-    private val REQUEST_GALLERY = 1001
+    //PANTALLA DE GUARDANDO
+    private val saving = SavingDialog(this)
 
     //PANTALLA GUARDADO FOTO
     private val savinImg = SavingImage(this)
 
+    //BINDNG:
+    private lateinit var binding : ActivityAnadirBiciBinding
+
+    //PERMISOS:
+    private val REQUEST_GALLERY = 1001
+
     private var ruta : String = ""
 
-    private lateinit var binding : ActivityAnadirCarreraBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityAnadirCarreraBinding.inflate(layoutInflater)
+        binding = ActivityAnadirBiciBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        //DEFINIR EL INPUT DE LOS CAMPOS NUMERICOS:
-        binding.ETdistanceRace.setRawInputType(InputType.TYPE_CLASS_NUMBER)
-        binding.ETdesnivRace.setRawInputType(InputType.TYPE_CLASS_NUMBER)
+        //DEFINIR EL INPUT TYPE DE LOS CAMPOS NUMERICOS:
+        binding.ETkmAddBici.setRawInputType(InputType.TYPE_CLASS_NUMBER)
 
-        binding.ETdateRace.setOnClickListener{
+        binding.BTaddbike.setOnClickListener{
+            addBici()
+        }
+
+        binding.ETfechaCompra.setOnClickListener{
             showDatePickerDialog()
         }
 
-        binding.BTraceAdd.setOnClickListener{
-            addRace()
+        //BOTON ABRIR CAMARA/GALERIA:
+        binding.BTfotobici.setOnClickListener {
+            subirImagenBici()
         }
 
-        binding.BTaddImageRace.setOnClickListener {
-            subirImagenRace()
-        }
-    }
+    }//override
 
-    fun showAlert(titulo: String, mensaje: String){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(titulo)
-        builder.setMessage(mensaje)
-        builder.setPositiveButton("Aceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-    }
-
+    //DATE PICKER:
     private fun showDatePickerDialog(){
-        val datePicker = DatePickerRace { day, month, year -> onDateSelected(day, month, year)}
+        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year)}
         datePicker.show(supportFragmentManager, "datePicker")
     }
 
-    fun onDateSelected(day:Int, month:Int, year:Int) {
-        binding.ETdateRace.setText("$day/${month+1}/$year")
-    }
-
-    fun subirImagenRace(){
+    private fun subirImagenBici(){
         checkGalleryPermission()
     }
 
@@ -100,17 +94,14 @@ class anadir_carrera : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY){
+        if(resultCode == RESULT_OK && requestCode == REQUEST_GALLERY){
             savinImg.startSavingImg()
 
             val imgFoto = data?.data
             val folder : StorageReference = FirebaseStorage.getInstance().getReference().child("user")
             val filename : StorageReference = folder.child("file" + imgFoto!!.lastPathSegment)
             filename.putFile(imgFoto).addOnSuccessListener {
-                //ruta = it.storage.downloadUrl.toString()
                 ruta = it.storage.name
-                //ruta = it.storage.path
-                //filename.downloadUrl
                 savinImg.isDimissImg()
                 Toast.makeText(applicationContext, "Imagen subida con éxito", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener{
@@ -154,36 +145,59 @@ class anadir_carrera : AppCompatActivity() {
         }
     }
 
-    fun abrirMisCarreras(){
-        val intent = Intent(this, carreras::class.java)
-        startActivity(intent)
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
+        binding.ETfechaCompra.setText("$day/${month+1}/$year")
     }
 
-    fun addRace(){
-        if(binding.ETtitleRace.text.isNullOrBlank() || binding.ETdistanceRace.text.isNullOrBlank() || binding.ETdesnivRace.text.isNullOrBlank() ||
-                binding.ETdateRace.text.isNullOrBlank() || binding.ETlocalizrace.text.isNullOrBlank()){
-            showAlert("Atención" , "No pueden haber campos vacios")
+    fun showAlert(titulo: String, mensaje: String){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(titulo)
+        builder.setMessage(mensaje)
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+    private fun limpiarCampos(){
+        binding.ETmarcaBici.setText("")
+        binding.ETmodelBici.setText("")
+        binding.ETtipoAddBici.setText("")
+        binding.ETkmAddBici.setText("")
+        binding.ETfechaCompra.setText("")
+    }
+
+    private fun addBici(){
+        if(binding.ETmarcaBici.text.isNullOrBlank() || binding.ETmodelBici.text.isNullOrBlank() || binding.ETtipoAddBici.text.isNullOrBlank() ||
+                binding.ETkmAddBici.text.isNullOrBlank() || binding.ETfechaCompra.text.isNullOrBlank()){
+                showAlert("Error", "Ningún campo puede estar vacío")
         }else{
-            val datosRace = hashMapOf(
+            saving.startSaving()
+            val datosBici = hashMapOf(
                     "uid_user" to uid_user,
-                    "name_race" to binding.ETtitleRace.text.trim().toString(),
-                    "distance_race" to binding.ETdistanceRace.text.trim().toString().toInt(),
-                    "desnivel_race" to binding.ETdesnivRace.text.trim().toString().toInt(),
-                    "date_race" to binding.ETdateRace.text.trim().toString(),
-                    "localizacion" to binding.ETlocalizrace.text.trim().toString(),
+                    "marca_bici" to binding.ETmarcaBici.text.trim().toString(),
+                    "modelo_bici" to binding.ETmodelBici.text.trim().toString(),
+                    "tipo_bici" to binding.ETtipoAddBici.text.trim().toString(),
+                    "km_total" to binding.ETkmAddBici.text.trim().toString().toInt(),
+                    "fecha_compra" to binding.ETfechaCompra.text.trim().toString(),
                     "imagen" to ruta
             )
-            db.collection("carreras")
-                    .add(datosRace)
+            db.collection("bicicletas")
+                    .add(datosBici)
                     .addOnSuccessListener {
-                       // showAlert("Datos guardados", "Carrera guardada con éxito")
-                        Toast.makeText(this, "Carrera añadida con éxito", Toast.LENGTH_SHORT).show()
-                        abrirMisCarreras()
+                        saving.isDimiss()
+                        Toast.makeText(this, "Bicicleta añadida con éxito", Toast.LENGTH_SHORT).show()
+                        limpiarCampos()
+                        abrirMisBicis()
                     }
                     .addOnFailureListener{
-                       // showAlert("Error", "No se pudieron guardar los datos")
-                        Toast.makeText(this, "Error, no se pudo guardar la carrera", Toast.LENGTH_SHORT).show()
+                        saving.isDimiss()
+                        showAlert("Error", "No se ha podido añadir la bicicleta")
                     }
         }
+    }
+
+    private fun abrirMisBicis(){
+        val intent = Intent(this, Bicicletas::class.java)
+        startActivity(intent)
     }
 }

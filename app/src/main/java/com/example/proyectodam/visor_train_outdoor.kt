@@ -107,7 +107,7 @@ class visor_train_outdoor : AppCompatActivity() {
         dialog.show()
     }
 
-    fun borrarRegistro(){
+    private fun borrarRegistro(){
             db.collection("entrenamientos")
                     .document(idDoc)
                     .delete()

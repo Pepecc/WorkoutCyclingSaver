@@ -46,22 +46,22 @@ class MenuInicial : AppCompatActivity() {
         Toast.makeText(applicationContext, "Sesión cerrada", Toast.LENGTH_SHORT).show()
     }
 
-    fun guardarUid(){
+    private fun guardarUid(){
         prefs.saveUserUid(user)
     }
 
-    fun abrirMenuTrain(){
+    private fun abrirMenuTrain(){
         val intent = Intent(this, ChooseTraining::class.java)
         startActivity(intent)
     }
 
-    fun abrirStats(){
+    private fun abrirStats(){
         //val intent = Intent(this, Historial::class.java)
         val intent = Intent(this, Estadisticas::class.java)
         startActivity(intent)
     }
 
-    fun abrirMiEspacio(){
+    private fun abrirMiEspacio(){
         val intent = Intent(this, MiEspacio::class.java)
         startActivity(intent)
     }

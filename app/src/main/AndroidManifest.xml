@@ -20,10 +20,10 @@
         <activity android:name=".visor_bicicletas" />
         <activity android:name=".visor_train_outdoor" />
         <activity android:name=".visorTrainIndoor" />
-        <activity android:name=".carreras" />
-        <activity android:name=".anadir_carrera" />
+        <activity android:name=".Carreras" />
+        <activity android:name=".AnadirCarrera" />
         <activity android:name=".anadirBici" />
-        <activity android:name=".bicicletas" />
+        <activity android:name=".Bicicletas" />
         <activity android:name=".MiEspacio" />
         <activity android:name=".Historial" />
         <activity android:name=".Estadisticas" />

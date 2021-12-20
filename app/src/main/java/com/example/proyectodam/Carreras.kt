@@ -12,7 +12,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_carreras.*
 
-class carreras : AppCompatActivity(), (DatosRVraces) -> Unit {
+class Carreras : AppCompatActivity(), (DatosRVraces) -> Unit {
 
     //INSTANCIA DE LA CONEXION:
     private var db = Firebase.firestore
@@ -41,8 +41,8 @@ class carreras : AppCompatActivity(), (DatosRVraces) -> Unit {
         startActivity(Intent(this, MiEspacio::class.java))
     }
 
-    fun addRaces(){
-        val intent = Intent(this, anadir_carrera::class.java)
+    private fun addRaces(){
+        val intent = Intent(this, AnadirCarrera::class.java)
         startActivity(intent)
     }
 
@@ -55,7 +55,7 @@ class carreras : AppCompatActivity(), (DatosRVraces) -> Unit {
         dialog.show()
     }
 
-    fun buscarDatos(){
+    private fun buscarDatos(){
         loading.startLoading()
         val datosRaces = arrayListOf<DatosRVraces>()
         db.collection("carreras")

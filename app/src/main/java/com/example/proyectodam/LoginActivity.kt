@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
         return pattern.matcher(email).matches()
     }
 
-    fun showMenu(email: String, provider: ProviderType){
+    private fun showMenu(email: String, provider: ProviderType){
         val menuIntent = Intent(this, MenuInicial::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
@@ -58,7 +58,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun crearUsuario() { //ABRE LA ACTIVITY MENU SI SE REGISTRA BIEN:
          if (binding.ETnewUser.text!!.isEmpty() && binding.ETnewPass.text!!.isEmpty() && binding.ETconfirmPass.text!!.isEmpty()) {
-      //  if(binding.ETnewUser.text.isNullOrBlank() && binding.ETnewPass.text.isNullOrBlank() && binding.ETconfirmPass.text.isNullOrBlank()){
             showAlert("Error", "No pueden haber campos vacios")
          }else if(!validarEmail(binding.ETnewUser.text.toString())){
             showAlert("Error", "Email incorrecto")

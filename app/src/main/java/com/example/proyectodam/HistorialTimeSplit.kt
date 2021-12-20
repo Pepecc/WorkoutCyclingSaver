@@ -48,7 +48,7 @@ class HistorialTimeSplit : AppCompatActivity(), (DatosRVtimeSplit) -> Unit {
         dialog.show()
     }
 
-    fun buscarDatos() {
+    private fun buscarDatos() {
         loading.startLoading()
         val registrosTimeSplit = arrayListOf<DatosRVtimeSplit>()
         //CARGAR DATOS DE FIREBASE:

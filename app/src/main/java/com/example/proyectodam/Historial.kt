@@ -44,7 +44,7 @@ class Historial : AppCompatActivity(), (DatosRVoutdoor) -> Unit {
         startActivity(Intent(this, MiEspacio::class.java))
     }
 
-    fun abrirGuardarDatos(){
+    private fun abrirGuardarDatos(){
         val intent =  Intent(this, ChooseTraining::class.java)
         startActivity(intent)
     }
@@ -58,9 +58,9 @@ class Historial : AppCompatActivity(), (DatosRVoutdoor) -> Unit {
         dialog.show()
     }
 
-    fun buscarDatos() {
+    private fun buscarDatos() {
         loading.startLoading()
-       val datosOutdoorTrain = arrayListOf<DatosRVoutdoor>()
+        val datosOutdoorTrain = arrayListOf<DatosRVoutdoor>()
         //CARGAR DATOS OUTDOOR:
                db.whereEqualTo("uid_user", uid_user)
                 .get()

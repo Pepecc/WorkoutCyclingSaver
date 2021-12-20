@@ -64,11 +64,11 @@ class TimeSplit : AppCompatActivity(){
         dialog.show()
     }
 
-    fun mostrarToast(){
+    private fun mostrarToast(){
         Toast.makeText(this, "Registro time split añadido con éxito", Toast.LENGTH_SHORT).show()
     }
 
-    fun limpiarCampos(){
+    private fun limpiarCampos(){
         binding.ETtramoTS.setText("")
         binding.ETminutesTS.setText("")
         binding.ETsecondsTS.setText("")
@@ -77,7 +77,7 @@ class TimeSplit : AppCompatActivity(){
     }
 
     //GUARDAR LOS DATOS EN LA LISTA SI EL USUARIO SÓLO GUARDA UNA VUELTA TS
-    fun almacenarDatos() {
+    private fun almacenarDatos() {
         var notas: String = ""
         if (binding.ETtramoTS.text.isNullOrBlank() || binding.ETminutesTS.text.isNullOrBlank() || binding.ETsecondsTS.text.isNullOrBlank() ||
                 binding.ETdistTS.text.isNullOrBlank()) {
@@ -114,7 +114,7 @@ class TimeSplit : AppCompatActivity(){
     }
 
     //GUARDAR LOS REGISTROS EN LISTAS SI EL USUARIO GUARDA MÁS DE UNA VUELTA TS
-    fun guardarArray(){
+    private fun guardarArray(){
         var notas : String = ""
         if(binding.ETtramoTS.text.isNullOrBlank() && binding.ETminutesTS.text.isNullOrBlank() && binding.ETsecondsTS.text.isNullOrBlank() &&
                 binding.ETdistTS.text.isNullOrBlank())    {

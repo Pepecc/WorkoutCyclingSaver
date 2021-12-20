@@ -57,7 +57,7 @@ class GuardarDatosIndoor : AppCompatActivity() {
         datePicker.show(supportFragmentManager, "datePicker")
     }
 
-    fun onDateSelected(day:Int, month:Int, year:Int){
+    private fun onDateSelected(day:Int, month:Int, year:Int){
         binding.ETdateIndoor.setText("$day/${month+1}/$year")
     }
 
@@ -70,7 +70,7 @@ class GuardarDatosIndoor : AppCompatActivity() {
         dialog.show()
     }
 
-    fun limpiarCampos(){
+    private fun limpiarCampos(){
         binding.ETtotaltimeIndoor.setText("")
         binding.ETpulsomedIndoor.setText("")
         binding.ETpulsomaxIndoor.setText("")
@@ -79,7 +79,7 @@ class GuardarDatosIndoor : AppCompatActivity() {
         binding.ETdateIndoor.setHint("Selecciona fecha")
     }
 
-    fun guardarDatosIndoor(){
+    private fun guardarDatosIndoor(){
         var notas: String = ""
         if(binding.ETtotaltimeIndoor.text.isNullOrBlank() || binding.ETpulsomedIndoor.text.isNullOrBlank()
                 || binding.ETpulsomaxIndoor.text.isNullOrBlank() || binding.ETcaloriasIndoor.text.isNullOrBlank()

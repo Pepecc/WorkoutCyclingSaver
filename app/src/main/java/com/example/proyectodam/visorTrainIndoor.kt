@@ -62,7 +62,7 @@ class visorTrainIndoor : AppCompatActivity() {
         startActivity(Intent(this, Historial::class.java))
     }
 
-    fun borrarRegistro(){
+    private fun borrarRegistro(){
         db.collection("entrenamientos")
                 .document(idDoc)
                 .delete()

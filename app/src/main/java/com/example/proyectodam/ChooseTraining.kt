@@ -27,12 +27,12 @@ class ChooseTraining : AppCompatActivity() {
         startActivity(Intent(this, MenuInicial::class.java))
     }
 
-    fun abrirOutdoorTrain(){
+    private fun abrirOutdoorTrain(){
         val intent = Intent(this, GuardarDatosOutdoor::class.java)
         startActivity(intent)
     }
 
-    fun abrirIndoorTrain(){
+    private  fun abrirIndoorTrain(){
         val intent = Intent(this, GuardarDatosIndoor::class.java)
         startActivity(intent)
     }
