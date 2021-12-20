@@ -28,7 +28,7 @@ class GuardarDatosOutdoor : AppCompatActivity() {
 
     private val idTS = System.currentTimeMillis().toString()
 
-    var indice : String = ""
+    private var indice : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityGuardarDatosOutdoorBinding.inflate(layoutInflater)
@@ -74,7 +74,7 @@ class GuardarDatosOutdoor : AppCompatActivity() {
         datePicker.show(supportFragmentManager, "datePicker")
     }
 
-    fun onDateSelected(day: Int, month: Int, year: Int){
+    private fun onDateSelected(day: Int, month: Int, year: Int){
         binding.ETfechaOd.setText("$day/${month+1}/$year")
     }
 
@@ -87,7 +87,7 @@ class GuardarDatosOutdoor : AppCompatActivity() {
         dialog.show()
     }
 
-    fun limpiarCampos(){
+    private fun limpiarCampos(){
         //CAMPOS OBLIGATORIOS:
         binding.ETfechaOd.setText("  Selecciona Fecha")
         binding.ETtotaltimeOd.setText("")
@@ -108,7 +108,7 @@ class GuardarDatosOutdoor : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun guardarDatosOutdoor(){
+    private fun guardarDatosOutdoor(){
         var notas: String = ""
         var idDoc: String = ""
         if(binding.ETtotaltimeOd.text.isNullOrBlank() || binding.ETdistOd.text.isNullOrBlank() || binding.ETpuslomedOd.text.isNullOrBlank()

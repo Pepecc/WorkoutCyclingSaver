@@ -33,7 +33,7 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
-        viewBinding(true)
+        viewBinding = true
     }
 }
 
@@ -46,7 +46,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.firebase:firebase-auth-ktx:20.0.4'
     implementation 'com.google.firebase:firebase-auth:20.0.4'
-    implementation files('libs/mysql-connector-java-5.1.49-bin.jar')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
